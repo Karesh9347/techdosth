@@ -1,0 +1,67 @@
+.footer {
+    background-color: #343a40; /* Dark background color */
+    color: #ffffff; /* White text color */
+    padding: 40px 20px; /* Padding for spacing */
+}
+
+.footer h5 {
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 20px; /* Space below the heading */
+    font-size: 1.5rem; /* Adjusted font size for headings */
+    border-bottom: 2px solid #00bcd4; /* Line below the heading */
+    padding-bottom: 10px; /* Space between the heading text and the line */
+    display: inline-block; /* Ensures border is just below text */
+}
+
+.footer p {
+    margin-bottom: 15px;
+    font-size: 0.9rem; /* Adjusted font size for paragraphs */
+}
+
+.footer .quick-links-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Space between link groups */
+}
+
+.footer .quick-link-group {
+    flex: 1 1 200px; /* Flexibility for each link group */
+    display: flex;
+    flex-direction: column;
+}
+
+.footer .quick-link-group a {
+    text-decoration: none;
+    color: #ffffff; /* White color for links */
+    margin-bottom: 10px; /* Space between links */
+    font-size: 1rem; /* Font size for links */
+    transition: color 0.3s ease, padding-left 0.3s ease; /* Smooth transition */
+}
+
+.footer .quick-link-group a:hover {
+    color: #00bcd4; /* Highlight color on hover */
+    padding-left: 10px; /* Subtle indentation on hover */
+}
+
+.footer .social-icons {
+    margin-top: 20px; /* Space above social icons */
+}
+
+.footer .social-icons a {
+    margin: 0 10px; /* Space between icons */
+    color: #ffffff; /* White color for icons */
+    font-size: 1.5rem; /* Font size for icons */
+    transition: color 0.3s ease; /* Smooth transition */
+}
+
+.footer .social-icons a:hover {
+    color: #00bcd4; /* Highlight color on hover */
+}
+
+.footer .text-center {
+    margin-top: 30px; /* Space above the text */
+    font-size: 0.875rem; /* Smaller font size for copyright */
+    border-top: 1px solid #495057; /* Separator line above the copyright text */
+    padding-top: 15px; /* Padding above the text */
+}

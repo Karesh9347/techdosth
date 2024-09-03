@@ -1,0 +1,83 @@
+/* Container styles */
+.register-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #ffffff; /* White background for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid #e3e3e3; /* Light border */
+}
+
+/* Header styles */
+.register-container h2 {
+    margin-bottom: 20px;
+    color: #007bff; /* Primary color for header */
+    font-weight: 600;
+}
+
+/* Form label styles */
+.form-label {
+    font-weight: bold; /* Bold labels for better readability */
+    color: #333; /* Dark text color */
+    margin-bottom: 8px;
+}
+
+/* Input field styles */
+.form-control {
+    border: 1px solid #ddd; /* Light border for inputs */
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Blue border on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2); /* Blue glow on focus */
+}
+
+/* Button styles */
+.register-button {
+    background-color: #007bff; /* Primary blue color */
+    color: #fff; /* White text */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+    margin-top: 20px;
+    width: 100%; /* Full width button */
+}
+
+.register-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Link styles */
+.register-container p {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.register-container a {
+    color: #007bff; /* Link color */
+    text-decoration: none;
+}
+
+.register-container a:hover {
+    text-decoration: underline; /* Underline on hover for links */
+}
+
+/* Alert styles */
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}

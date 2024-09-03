@@ -1,0 +1,42 @@
+/* src/components/QuestionsList.css */
+
+.container {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .table {
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .table thead th {
+    background: #007bff;
+    color: white;
+  }
+  
+  .table tbody tr:hover {
+    background: #f1f1f1;
+  }
+  /* src/css/heading.css */
+
+.heading {
+    font-size: 1.5rem; /* Adjust the size as needed */
+    font-weight: bold;
+    color: #007bff; /* Blue color */
+    text-align: center;
+    margin: 1.5rem 0; /* Space around the heading */
+    border-bottom: 2px solid #007bff; /* Blue underline */
+    padding-bottom: 0.5rem; /* Space between text and underline */
+
+  }
+  
+  @media (max-width: 768px) {
+    .heading {
+      font-size: 1.25rem; /* Smaller font size on smaller screens */
+      margin: 1rem 0; /* Reduced margin on smaller screens */
+    }
+  }
+  
+  

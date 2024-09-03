@@ -1,0 +1,140 @@
+/* src/css/hero.css */
+
+/* Container and row styling */
+.card{
+  background-color:rgb(170, 3, 185);
+  
+}
+
+.container {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .row {
+    margin-bottom: 2rem;
+  }
+  
+  /* Card styling */
+  .card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    background: #ffffff;
+    position: relative; /* Required for the pseudo-element positioning */
+  }
+  
+  /* Hover effect for the card */
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Pseudo-element for the border effect */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border: 2px solid #007bff; /* Border color */
+    border-radius: 15px;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none; /* Prevent interaction with the pseudo-element */
+  }
+  
+  /* Show the border effect on hover */
+  .card:hover::before {
+    opacity: 1;
+  }
+  
+  /* Card image styling */
+  .card-img-top {
+    object-fit: cover;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  /* Card body styling */
+  .card-body {
+    padding: 1.5rem;
+    background: #f9f9f9;
+  }
+  
+  /* Card title styling */
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #007bff; /* Blue color for title */
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Card text styling */
+  .card-text {
+    color: #6c757d; /* Gray color for additional text */
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .card-title {
+      font-size: 1.1rem;
+    }
+  
+    .card-text {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Horizontal scrolling */
+  .horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    padding: 1rem 0;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+  }
+  
+  .horizontal-scroll .row {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  
+  /* Scroll indicator styling */
+  .scroll-indicator {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .horizontal-scroll:hover .scroll-indicator {
+    display: block;
+  }
+  
+  @media (max-width: 767px) {
+    .scroll-indicator {
+      display: block;
+    }
+  }
+ 

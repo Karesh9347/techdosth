@@ -1,0 +1,31 @@
+/* Courses.css */
+.courses-container {
+    text-align: center;
+    padding: 2rem;
+    background: #f9f9f9;
+    color: #333;
+  }
+  
+  .courses-container h1 {
+    font-size: 2rem;
+    font-weight: bold;
+
+    color: #007bff; /* Blue color for the heading */
+  }
+  
+  .courses-container p {
+    font-size: 1.1rem;
+   
+    color: #666;
+  }
+  
+ 
+  .img-con{
+    width: 100%;
+    height: 100%;
+  }
+  .img-con img{
+    width: 50%;
+    height: 50%;
+  }
+  
