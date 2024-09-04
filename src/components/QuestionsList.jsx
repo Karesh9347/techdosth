@@ -84,7 +84,9 @@ const QuestionsList = () => {
 
                     </tr>
                   ))}
-                </tbody>:<center><Spinner/></center> }
+                </tbody>:<Container>
+                  <Spinner size={40}/>
+                </Container>}
               </Table>
             </div>
           </Col>
