@@ -11,11 +11,23 @@ const Dp = () => {
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState(null);
   const navigate = useNavigate(); // Hook to navigate back
-
+  function getColorByDifficulty(difficulty) {
+    switch (difficulty.toLowerCase()) {
+      case 'easy':
+        return 'green';
+      case 'medium':
+        return 'orange';
+      case 'hard':
+        return 'red';
+      default:
+        return 'black'; // default color if difficulty is undefined
+    }
+  }
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get('https://techdosth-backend-1.onrender.com/questions');
+       
         const dpQuestions = response.data.filter(question =>
           question.hashtags.includes('dynamic programming')
         );
@@ -112,7 +124,7 @@ const Dp = () => {
                 <td>
                 <Link to={`/questions/${question._id}`}>solution</Link>
                 </td>
-                <td>
+                <td style={{color:getColorByDifficulty(question.difficulty)}}>
                   {question.difficulty}
                 </td>
               </tr>
