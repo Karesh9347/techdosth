@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Row, Container, Card, Button, Table } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,Link} from 'react-router-dom';
 import axios from 'axios';
 import Navb from './Navb';
 import Footer from './Footer';
@@ -11,12 +11,19 @@ const Hashing = () => {
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState(null);
   const navigate = useNavigate(); // Hook to navigate back
-
+ const [col,setColor]=useState("green")
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get('https://techdosth-backend-1.onrender.com/questions');
         // Filter questions with the "hashing" hashtag
+        if(response.data.difficulty=="easy"){
+          setColor("green")
+        }else if(response.data.difficulty=="medium"){
+          setColor("orange")
+        }else if(response.data.difficulty=="hard"){
+          setColor("red")
+        }
         const hashingQuestions = response.data.filter(question =>
           question.hashtags.includes('hashing')
         );
@@ -85,28 +92,30 @@ const Hashing = () => {
         <Card.Title>Questions Related to Hashing</Card.Title>
         {error && <div className="alert alert-danger">{error}</div>}
         <Table striped bordered hover responsive>
-          <thead>
+        <thead>
             <tr>
               <th>ID</th>
               <th>Title</th>
               <th>Problem Link</th>
-              <th>Video</th>
+              <th>solution</th>
+              <th>difficulty</th>
             </tr>
           </thead>
           <tbody>
-            {questions.map((question) => (
+            {questions.map((question,id) => (
               <tr key={question._id}>
-                <td>{question.id}</td>
-                <td>{question.title}</td>
+                <td>{id}</td>
+                <td>{question.QuestionName}</td>
                 <td>
-                  <a href={question.link} target="_blank" rel="noopener noreferrer">
+                  <a href={question.problemlink} target="_blank" rel="noopener noreferrer">
                     View Problem
                   </a>
                 </td>
                 <td>
-                  <a href={question.video} target="_blank" rel="noopener noreferrer">
-                    Watch Video
-                  </a>
+                <Link to={`/questions/${question._id}`}>solution</Link>
+                </td>
+                <td style={{color:`${col}`}}>
+                  {question.difficulty }
                 </td>
               </tr>
             ))}
