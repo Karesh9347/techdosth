@@ -5,7 +5,7 @@ import axios from 'axios';
 import Navb from './Navb';
 import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Simple from './Simple';
+
 
 const Top100 = () => {
   const [questions, setQuestions] = useState([]);
@@ -122,7 +122,7 @@ const Top100 = () => {
           </tbody>
         </Table>
       </Container>
-      <Simple/>
+     
       <Footer />
     </div>
   );
