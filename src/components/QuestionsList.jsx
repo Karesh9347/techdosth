@@ -7,31 +7,39 @@ const QuestionsList = () => {
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [col,setColor]=useState("green")
+
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
         setLoading(true);
         const response = await axios.get('https://techdosth-backend-1.onrender.com/questions');
-        if(response.data.difficulty==="easy"){
-          setColor("green")
-        }else if(response.data.difficulty==="medium"){
-          setColor("orange")
-        }else if(response.data.difficulty==="hard"){
-          setColor("red")
-        }
+      
         setQuestions(response.data);
+       
       } catch (err) {
         setError('Error fetching questions: ' + err.message);
         console.error("Error:", err.message);
       } finally {
         setLoading(false);
+        
       }
     };
 
     fetchQuestions();
   }, []); // Fetch data on component mount
-
+  function getColorByDifficulty(difficulty) {
+    switch (difficulty.toLowerCase()) {
+      case 'easy':
+        return 'green';
+      case 'medium':
+        return 'orange';
+      case 'hard':
+        return 'red';
+      default:
+        return 'black'; // default color if difficulty is undefined
+    }
+  }
+  
   return (
     <Container style={{ marginTop: "20px" }}>
       <Row className="mb-3">
@@ -57,7 +65,7 @@ const QuestionsList = () => {
                     <th>difficulty</th>
                   </tr>
                 </thead>
-                <tbody>
+                {!loading?<tbody>
                   {questions.map((question, index) => (
                     <tr key={question._id}>
                       <td>{index + 1}</td>
@@ -70,12 +78,13 @@ const QuestionsList = () => {
                       <td>
                         <Link to={`/questions/${question._id}`}>solution</Link>
                       </td>
-                      <td style={{color:`${col}`}}>
-                  {question.difficulty }
-                </td>
+                      <td style={{ color: getColorByDifficulty(question.difficulty) }}>
+  {question.difficulty}
+</td>
+
                     </tr>
                   ))}
-                </tbody>
+                </tbody>:<center><Spinner/></center> }
               </Table>
             </div>
           </Col>
