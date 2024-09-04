@@ -10,11 +10,12 @@ const Recursion = () => {
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get('https://techdosth-backend-1.onrender.com/questions');
+       
         // Filter questions with the "recursion" hashtag
         const recursionQuestions = response.data.filter(question =>
           question.hashtags.includes('recursion')
@@ -32,7 +33,18 @@ const Recursion = () => {
   const handleBack = () => {
     navigate(-1);
   };
-
+  function getColorByDifficulty(difficulty) {
+    switch (difficulty.toLowerCase()) {
+      case 'easy':
+        return 'green';
+      case 'medium':
+        return 'orange';
+      case 'hard':
+        return 'red';
+      default:
+        return 'black'; // default color if difficulty is undefined
+    }
+  }
   return (
     <div>
       <Navb />
@@ -94,7 +106,7 @@ const Recursion = () => {
           <tbody>
             {questions.map((question,id) => (
               <tr key={question._id}>
-                <td>{id+1}</td>
+                <td>{id}</td>
                 <td>{question.QuestionName}</td>
                 <td>
                   <a href={question.problemlink} target="_blank" rel="noopener noreferrer">
@@ -104,8 +116,8 @@ const Recursion = () => {
                 <td>
                 <Link to={`/questions/${question._id}`}>solution</Link>
                 </td>
-                <td>
-                  {question.difficulty}
+                <td style={{color:getColorByDifficulty(question.difficulty)}}>
+                  {question.difficulty }
                 </td>
               </tr>
             ))}
