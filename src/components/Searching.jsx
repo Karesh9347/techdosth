@@ -16,6 +16,7 @@ const Searching = () => {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get('https://techdosth-backend-1.onrender.com/questions');
+        
         // Filter questions with the "searching" hashtag
         const searchingQuestions = response.data.filter(question =>
           question.hashtags.includes('searching')
@@ -33,6 +34,18 @@ const Searching = () => {
   const handleBack = () => {
     navigate(-1); // Navigate back to the previous page
   };
+  function getColorByDifficulty(difficulty) {
+    switch (difficulty.toLowerCase()) {
+      case 'easy':
+        return 'green';
+      case 'medium':
+        return 'orange';
+      case 'hard':
+        return 'red';
+      default:
+        return 'black'; // default color if difficulty is undefined
+    }
+  }
 
   return (
     <div>
@@ -97,7 +110,7 @@ const Searching = () => {
           <tbody>
             {questions.map((question,id) => (
               <tr key={question._id}>
-                <td>{id+1}</td>
+                <td>{id}</td>
                 <td>{question.QuestionName}</td>
                 <td>
                   <a href={question.problemlink} target="_blank" rel="noopener noreferrer">
@@ -107,8 +120,8 @@ const Searching = () => {
                 <td>
                 <Link to={`/questions/${question._id}`}>solution</Link>
                 </td>
-                <td>
-                  {question.difficulty}
+                <td style={{color:getColorByDifficulty(question.difficulty)}}>
+                  {question.difficulty }
                 </td>
               </tr>
             ))}
