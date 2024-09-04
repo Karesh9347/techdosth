@@ -10,20 +10,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Arrays = () => {
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState(null);
-  const [col,setColor]=useState("green")
+  function getColorByDifficulty(difficulty) {
+    switch (difficulty.toLowerCase()) {
+      case 'easy':
+        return 'green';
+      case 'medium':
+        return 'orange';
+      case 'hard':
+        return 'red';
+      default:
+        return 'black'; // default color if difficulty is undefined
+    }
+  }
   const navigate = useNavigate(); // Hook to navigate back
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get('https://techdosth-backend-1.onrender.com/questions');
         // Filter questions with the "array" hashtag
-        if(response.data.difficulty=="easy"){
-          setColor("green")
-        }else if(response.data.difficulty=="medium"){
-          setColor("orange")
-        }else if(response.data.difficulty=="hard"){
-          setColor("red")
-        }
+        
         const arrayQuestions = response.data.filter(question =>
           question.hashtags.includes('array')
         );
@@ -118,7 +123,7 @@ const Arrays = () => {
                 <td>
                 <Link to={`/questions/${question._id}`}>solution</Link>
                 </td>
-                <td style={{color:`${col}`}}>
+                <td style={{color:getColorByDifficulty(question.difficulty)}}>
                   {question.difficulty }
                 </td>
               </tr>
