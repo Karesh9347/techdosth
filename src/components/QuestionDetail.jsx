@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Container, Alert, ButtonGroup, Button } from "react-bootstrap";
-import '../css/solutions.css'; // Ensure this CSS file exists and is properly configured
+import '../css/soltions.css'; // Import the CSS file
 import Navb from "./Navb";
 import Footer from "./Footer";
 
@@ -17,12 +17,13 @@ const QuestionDetail = () => {
   useEffect(() => {
     const fetchQuestionDetails = async () => {
       try {
-        const response = await axios.get(`https://techdosth-backend-1.onrender.com/questions/${id}`);
+        const response = await axios.get(https://techdosth-backend-1.onrender.com/questions/${id});
         setQuestion(response.data);
+        // Initialize images for each approach
         if (response.data.images) {
-          setBrute(`data:image/png;base64,${response.data.images.pythonBruteForce}`);
-          setBetter(`data:image/png;base64,${response.data.images.pythonBetter}`);
-          setOptimize(`data:image/png;base64,${response.data.images.pythonOptimized}`);
+          setBrute(data:image/png;base64,${response.data.images.pythonBruteForce});
+          setBetter(data:image/png;base64,${response.data.images.pythonBetter});
+          setOptimize(data:image/png;base64,${response.data.images.pythonOptimized});
         }
       } catch (err) {
         setError("Error fetching question details: " + err.message);
@@ -33,19 +34,7 @@ const QuestionDetail = () => {
     fetchQuestionDetails();
   }, [id]);
 
-  // Ad implementation using React AdSense
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-    script.async = true;
-    script.setAttribute("data-ad-client", "ca-pub-YOUR_AD_CLIENT_ID"); // Replace with actual AdSense client ID
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
+  
   if (error) {
     return <Alert variant="danger">{error}</Alert>;
   }
@@ -55,7 +44,7 @@ const QuestionDetail = () => {
       <div>
         <Navb />
         <center style={{ width: "100%", height: "100%" }}>
-          <img style={{ width: "100%", height: "100%" }} src="/loading.gif" alt="loading" />
+          <img style={{ width: "100%", height: "100%" }} src='/loading.gif' alt="loading" />
         </center>
         <Footer />
       </div>
@@ -65,7 +54,7 @@ const QuestionDetail = () => {
   // Helper function to get base64 image data
   const getBase64Image = (imageName) => {
     return question.images && question.images[imageName]
-      ? `data:image/png;base64,${question.images[imageName]}`
+      ? data:image/png;base64,${question.images[imageName]}
       : null;
   };
 
@@ -82,10 +71,10 @@ const QuestionDetail = () => {
   return (
     <div>
       <Navb />
+
       <Container className="container">
         <h2>{question.QuestionName}</h2>
-        <h4>Description:</h4>
-        <p>{question.description}</p>
+        <h4>Description:</h4><p>{question.description}</p>
 
         {/* Brute Force Solution */}
         <div className="solution-section">
@@ -104,8 +93,12 @@ const QuestionDetail = () => {
               <p>No image available, we will update soon</p>
             )}
           </div>
+
+          {/* Additional content under Brute Force Approach */}
           <p>Time Complexity: {question.complexities.tc1}</p>
           <p>Space Complexity: {question.complexities.sc1}</p>
+
+        
         </div>
 
         {/* Better Solution */}
@@ -142,8 +135,6 @@ const QuestionDetail = () => {
           <p>Space Complexity: {question.complexities.sc3}</p>
         </div>
 
-        {/* Google AdSense Ad */}
-        <div id="google-ad-1" className="ads-section"></div>
       </Container>
       <Footer />
     </div>
