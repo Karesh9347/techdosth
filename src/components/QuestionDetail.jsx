@@ -17,13 +17,13 @@ const QuestionDetail = () => {
   useEffect(() => {
     const fetchQuestionDetails = async () => {
       try {
-        const response = await axios.get(https://techdosth-backend-1.onrender.com/questions/${id});
+        const response = await axios.get(`https://techdosth-backend-1.onrender.com/questions/${id}`);
         setQuestion(response.data);
         // Initialize images for each approach
         if (response.data.images) {
-          setBrute(data:image/png;base64,${response.data.images.pythonBruteForce});
-          setBetter(data:image/png;base64,${response.data.images.pythonBetter});
-          setOptimize(data:image/png;base64,${response.data.images.pythonOptimized});
+          setBrute(`data:image/png;base64,${response.data.images.pythonBruteForce}`);
+          setBetter(`data:image/png;base64,${response.data.images.pythonBetter}`);
+          setOptimize(`data:image/png;base64,${response.data.images.pythonOptimized}`);
         }
       } catch (err) {
         setError("Error fetching question details: " + err.message);
@@ -34,7 +34,21 @@ const QuestionDetail = () => {
     fetchQuestionDetails();
   }, [id]);
 
-  
+  useEffect(() => {
+    // Load the Google AdSense script when the component mounts
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+    script.setAttribute("data-ad-client", "ca-pub-6817331680883128");
+    script.crossOrigin = "anonymous";
+    document.body.appendChild(script);
+
+    return () => {
+      // Clean up by removing the script
+      document.body.removeChild(script);
+    };
+  }, []);
+
   if (error) {
     return <Alert variant="danger">{error}</Alert>;
   }
@@ -54,7 +68,7 @@ const QuestionDetail = () => {
   // Helper function to get base64 image data
   const getBase64Image = (imageName) => {
     return question.images && question.images[imageName]
-      ? data:image/png;base64,${question.images[imageName]}
+      ? `data:image/png;base64,${question.images[imageName]}`
       : null;
   };
 
@@ -98,7 +112,15 @@ const QuestionDetail = () => {
           <p>Time Complexity: {question.complexities.tc1}</p>
           <p>Space Complexity: {question.complexities.sc1}</p>
 
-        
+          {/* Google AdSense Ad */}
+          <div className="ads-section">
+            <ins className="adsbygoogle"
+                 style={{ display: "block" }}
+                 data-ad-client="ca-pub-6817331680883128"
+                 data-ad-slot="8987415025"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+          </div>
         </div>
 
         {/* Better Solution */}
