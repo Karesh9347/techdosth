@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Container, Alert, ButtonGroup, Button } from "react-bootstrap";
-import '../css/soltions.css'; // Import the CSS file
+import '../css/solutions.css'; // Ensure this CSS file exists and is properly configured
 import Navb from "./Navb";
 import Footer from "./Footer";
 
@@ -29,28 +29,20 @@ const QuestionDetail = () => {
         console.error("Error:", err.message);
       }
     };
+
     fetchQuestionDetails();
   }, [id]);
 
+  // Ad implementation using React AdSense
   useEffect(() => {
-    // Inject Google AdSense script
-    const adSenseScript = document.createElement("script");
-    adSenseScript.async = true;
-    adSenseScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-    adSenseScript.setAttribute("data-ad-client", "ca-pub-6817331680883128");
-    adSenseScript.crossOrigin = "anonymous";
-    document.body.appendChild(adSenseScript);
-
-    // Custom Ad Script Injection
-    const customAdScript = document.createElement("script");
-    customAdScript.async = true;
-    customAdScript.src = "//www.topcreativeformat.com/fc9e8454a890da46c9f64d03d0ee905d/invoke.js";
-    document.body.appendChild(customAdScript);
+    const script = document.createElement("script");
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+    script.async = true;
+    script.setAttribute("data-ad-client", "ca-pub-YOUR_AD_CLIENT_ID"); // Replace with actual AdSense client ID
+    document.body.appendChild(script);
 
     return () => {
-      // Cleanup script tags on component unmount
-      document.body.removeChild(adSenseScript);
-      document.body.removeChild(customAdScript);
+      document.body.removeChild(script);
     };
   }, []);
 
@@ -63,7 +55,7 @@ const QuestionDetail = () => {
       <div>
         <Navb />
         <center style={{ width: "100%", height: "100%" }}>
-          <img style={{ width: "100%", height: "100%" }} src='/loading.gif' alt="loading" />
+          <img style={{ width: "100%", height: "100%" }} src="/loading.gif" alt="loading" />
         </center>
         <Footer />
       </div>
@@ -90,10 +82,10 @@ const QuestionDetail = () => {
   return (
     <div>
       <Navb />
-
       <Container className="container">
         <h2>{question.QuestionName}</h2>
-        <h4>Description:</h4><p>{question.description}</p>
+        <h4>Description:</h4>
+        <p>{question.description}</p>
 
         {/* Brute Force Solution */}
         <div className="solution-section">
@@ -114,27 +106,6 @@ const QuestionDetail = () => {
           </div>
           <p>Time Complexity: {question.complexities.tc1}</p>
           <p>Space Complexity: {question.complexities.sc1}</p>
-
-          {/* Google AdSense Ad */}
-          <div className="ads-section">
-            <ins className="adsbygoogle"
-                 style={{ display: "block" }}
-                 data-ad-client="ca-pub-6817331680883128"
-                 data-ad-slot="8987415025"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-          </div>
-
-          {/* Custom Ad Section */}
-          <div className="custom-ads-section">
-            <iframe
-              src="//www.topcreativeformat.com/fc9e8454a890da46c9f64d03d0ee905d/invoke.js"
-              width="160"
-              height="300"
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              title="custom-ad"></iframe>
-          </div>
         </div>
 
         {/* Better Solution */}
@@ -170,6 +141,9 @@ const QuestionDetail = () => {
           <p>Time Complexity: {question.complexities.tc3}</p>
           <p>Space Complexity: {question.complexities.sc3}</p>
         </div>
+
+        {/* Google AdSense Ad */}
+        <div id="google-ad-1" className="ads-section"></div>
       </Container>
       <Footer />
     </div>
