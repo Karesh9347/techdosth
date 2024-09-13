@@ -35,7 +35,7 @@ const QuestionDetail = () => {
   }, [id]);
 
   useEffect(() => {
-    // Load the Google AdSense script when the component mounts
+    // Load Google AdSense
     const script = document.createElement("script");
     script.async = true;
     script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
@@ -43,9 +43,16 @@ const QuestionDetail = () => {
     script.crossOrigin = "anonymous";
     document.body.appendChild(script);
 
+    // Load your custom ad script
+    const customAdScript = document.createElement("script");
+    customAdScript.async = true;
+    customAdScript.src = "//www.topcreativeformat.com/fc9e8454a890da46c9f64d03d0ee905d/invoke.js";
+    document.body.appendChild(customAdScript);
+
     return () => {
-      // Clean up by removing the script
+      // Clean up by removing both scripts
       document.body.removeChild(script);
+      document.body.removeChild(customAdScript);
     };
   }, []);
 
@@ -121,9 +128,30 @@ const QuestionDetail = () => {
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
           </div>
+
+          {/* Custom Ad */}
+          <div className="custom-ads-section">
+            <script type="text/javascript">
+              atOptions = {
+                'key': 'fc9e8454a890da46c9f64d03d0ee905d',
+                'format': 'iframe',
+                'height': 300,
+                'width': 160,
+                'params': {}
+              };
+            </script>
+            <iframe 
+              src="//www.topcreativeformat.com/fc9e8454a890da46c9f64d03d0ee905d/invoke.js"
+              width="160"
+              height="300"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              title="custom-ad"></iframe>
+          </div>
         </div>
 
-        {/* Better Solution */}
+        {/* Better and Optimized Solutions follow similarly... */}
+                {/* Better Solution */}
         <div className="solution-section">
           <h5>Better Approach</h5>
           <div className="solution-header">
@@ -156,7 +184,7 @@ const QuestionDetail = () => {
           <p>Time Complexity: {question.complexities.tc3}</p>
           <p>Space Complexity: {question.complexities.sc3}</p>
         </div>
-
+        
       </Container>
       <Footer />
     </div>
