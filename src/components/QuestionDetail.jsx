@@ -19,7 +19,6 @@ const QuestionDetail = () => {
       try {
         const response = await axios.get(`https://techdosth-backend-1.onrender.com/questions/${id}`);
         setQuestion(response.data);
-        // Initialize images for each approach
         if (response.data.images) {
           setBrute(`data:image/png;base64,${response.data.images.pythonBruteForce}`);
           setBetter(`data:image/png;base64,${response.data.images.pythonBetter}`);
@@ -30,28 +29,27 @@ const QuestionDetail = () => {
         console.error("Error:", err.message);
       }
     };
-
     fetchQuestionDetails();
   }, [id]);
 
   useEffect(() => {
-    // Load Google AdSense
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-    script.setAttribute("data-ad-client", "ca-pub-6817331680883128");
-    script.crossOrigin = "anonymous";
-    document.body.appendChild(script);
+    // Inject Google AdSense script
+    const adSenseScript = document.createElement("script");
+    adSenseScript.async = true;
+    adSenseScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+    adSenseScript.setAttribute("data-ad-client", "ca-pub-6817331680883128");
+    adSenseScript.crossOrigin = "anonymous";
+    document.body.appendChild(adSenseScript);
 
-    // Load your custom ad script
+    // Custom Ad Script Injection
     const customAdScript = document.createElement("script");
     customAdScript.async = true;
     customAdScript.src = "//www.topcreativeformat.com/fc9e8454a890da46c9f64d03d0ee905d/invoke.js";
     document.body.appendChild(customAdScript);
 
     return () => {
-      // Clean up by removing both scripts
-      document.body.removeChild(script);
+      // Cleanup script tags on component unmount
+      document.body.removeChild(adSenseScript);
       document.body.removeChild(customAdScript);
     };
   }, []);
@@ -114,8 +112,6 @@ const QuestionDetail = () => {
               <p>No image available, we will update soon</p>
             )}
           </div>
-
-          {/* Additional content under Brute Force Approach */}
           <p>Time Complexity: {question.complexities.tc1}</p>
           <p>Space Complexity: {question.complexities.sc1}</p>
 
@@ -129,18 +125,9 @@ const QuestionDetail = () => {
                  data-full-width-responsive="true"></ins>
           </div>
 
-          {/* Custom Ad */}
+          {/* Custom Ad Section */}
           <div className="custom-ads-section">
-            <script type="text/javascript">
-              atOptions = {
-                'key': 'fc9e8454a890da46c9f64d03d0ee905d',
-                'format': 'iframe',
-                'height': 300,
-                'width': 160,
-                'params': {}
-              };
-            </script>
-            <iframe 
+            <iframe
               src="//www.topcreativeformat.com/fc9e8454a890da46c9f64d03d0ee905d/invoke.js"
               width="160"
               height="300"
@@ -150,8 +137,7 @@ const QuestionDetail = () => {
           </div>
         </div>
 
-        {/* Better and Optimized Solutions follow similarly... */}
-                {/* Better Solution */}
+        {/* Better Solution */}
         <div className="solution-section">
           <h5>Better Approach</h5>
           <div className="solution-header">
@@ -184,7 +170,6 @@ const QuestionDetail = () => {
           <p>Time Complexity: {question.complexities.tc3}</p>
           <p>Space Complexity: {question.complexities.sc3}</p>
         </div>
-        
       </Container>
       <Footer />
     </div>
