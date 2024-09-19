@@ -1,0 +1,38 @@
+/* Hero Section */
+.hero-section {
+ 
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  
+  .hero-description {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  /* Questions Section */
+  .questions-section {
+    margin-top: 40px; /* Create space between hero and questions */
+  }
+  
+  .horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 20px;
+  }
+  
+  .scroll-indicator {
+    text-align: right;
+    font-size: 2rem;
+    margin-right: 20px;
+    color: #ccc;
+  }
+  
