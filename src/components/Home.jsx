@@ -22,6 +22,8 @@ import Courses from './Courses'
 import Register from './Register'
 import Contact from './Contact'
 import Recursion from './Recursion'
+import Contest from './Contest'
+import Aptitude from './Aptitude'
 const Home = () => {
  
   return (
@@ -33,6 +35,7 @@ const Home = () => {
           <Route path="/" element={<Hero/>}/>
           <Route path="/questions/:id" element={<QuestionDetail/>} />
           <Route path="/login" element={<Login/>}/>
+          <Route path="/contest" element={<Contest/>}/>
           <Route path="/recursion" element={<Recursion/>}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/register" element={<Register/>}/>
@@ -51,6 +54,7 @@ const Home = () => {
           <Route path="/greedy" element={<Greedy/>}/>
           <Route path="/about" element={<About/>}/>
           <Route path="/courses" element={<Courses/>}/>
+          <Route path='/aptitude' element={<Aptitude/>}/>
         </Routes>
         </BrowserRouter>
       
