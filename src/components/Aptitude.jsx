@@ -21,7 +21,7 @@ const Aptitude = () => {
 
       <Container fluid className="px-3 questions-section">
         <center>
-          <h1 className="hero-title">Aptitude Questions</h1>
+          <h3 className="hero-title">Aptitude Questions</h3>
           <p className="hero-description">Sharpen your skills with these essential aptitude questions.</p>
         </center>
         
