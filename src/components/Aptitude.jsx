@@ -20,11 +20,7 @@ const Aptitude = () => {
       <Navb />
 
       <Container fluid className="px-3 questions-section">
-        <center>
-          <h3 className="hero-title">Aptitude Questions</h3>
-          <p className="hero-description">Sharpen your skills with these essential aptitude questions.</p>
-        </center>
-        
+      
         <div className="horizontal-scroll">
           <Row className="gx-4">
             {questions.map((question) => (
