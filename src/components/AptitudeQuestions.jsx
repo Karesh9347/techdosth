@@ -11,7 +11,7 @@ const AptitudeQuestions = () => {
   useEffect(() => {
     // Fetch aptitude questions from the backend
     axios
-      .get("https://techdosth-backend.onrender.com/get-aptitude")
+      .get("https://techdosth-backend-1.onrender.com/get-aptitude")
       .then((response) => {
         setQuestions(response.data); // Store the fetched questions
       })
