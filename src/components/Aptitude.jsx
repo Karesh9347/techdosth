@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import '../css/aptitude.css';
 import Footer from './Footer';
 import Navb from './Navb';
+import AptitudeQuestions from './AptitudeQuestions';
 
 const Aptitude = () => {
   const questions = [
@@ -19,20 +20,21 @@ const Aptitude = () => {
       <Navb />
 
       <Container fluid className="px-3 questions-section">
-      <center>
-      <h1 className="hero-title">Aptitude Questions</h1>
-      <p className="hero-description">Sharpen your skills with these essential aptitude questions.</p>
-      </center>
+        <center>
+          <h1 className="hero-title">Aptitude Questions</h1>
+          <p className="hero-description">Sharpen your skills with these essential aptitude questions.</p>
+        </center>
+        
         <div className="horizontal-scroll">
           <Row className="gx-4">
             {questions.map((question) => (
-              <Col xs={12} sm={6} md={4} lg={3} key={question.id} className="mb-4">  {/* Adjust column size here */}
+              <Col xs={5} sm={3} md={4} lg={3} key={question.id} className="mb-4">
                 <Link to={question.url} style={{ textDecoration: 'none' }}>
-                  <Card>
+                  <Card className="h-100">
                     <Card.Body style={{ backgroundColor: "#E6E6FA" }}>
-                      <Card.Img variant="top" src={question.image} className="mb-4" />
+                      <Card.Img variant="top" src={question.image} className="img" />
                       <Card.Title>{question.title}</Card.Title>
-                      <Card.Text style={{ textDecoration: "none", color: "inherit" }}>
+                      <Card.Text style={{ color: "inherit" }}>
                         {question.description}
                       </Card.Text>
                     </Card.Body>
@@ -46,7 +48,7 @@ const Aptitude = () => {
           </div>
         </div>
       </Container>
-
+      <AptitudeQuestions/>
       <Footer />
     </div>
   );
