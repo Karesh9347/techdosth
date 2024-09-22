@@ -24,6 +24,7 @@ import Contact from './Contact'
 import Recursion from './Recursion'
 import Contest from './Contest'
 import Aptitude from './Aptitude'
+import Solution from './Solution'
 const Home = () => {
  
   return (
@@ -34,6 +35,7 @@ const Home = () => {
         <Routes>
           <Route path="/" element={<Hero/>}/>
           <Route path="/questions/:id" element={<QuestionDetail/>} />
+          <Route path="/aquestions/:id" element={<Solution/>} />
           <Route path="/login" element={<Login/>}/>
           <Route path="/contest" element={<Contest/>}/>
           <Route path="/recursion" element={<Recursion/>}/>
