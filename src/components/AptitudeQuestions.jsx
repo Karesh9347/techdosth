@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table, Button, Container } from "react-bootstrap";
 import "../css/apQuestions.css";
 import axios from "axios";
-import { QuestionSquareFill } from "react-bootstrap-icons";
+import {Link} from 'react-router-dom'
 
 const AptitudeQuestions = () => {
   const [questions, setQuestions] = useState([]);
@@ -11,7 +11,7 @@ const AptitudeQuestions = () => {
   useEffect(() => {
     // Fetch aptitude questions from the backend
     axios
-      .get("https://techdosth-backend-1.onrender.com/get-aptitude")
+      .get("http://localhost:5000/get-aptitude")
       .then((response) => {
         setQuestions(response.data); // Store the fetched questions
       })
@@ -36,14 +36,14 @@ const AptitudeQuestions = () => {
       {error && <p>{error}</p>}
       <ol>
         {questions.map((question) => (
-          <li key={question._id || question.id}> {/* Use a unique identifier for key */}
+          <li key={question._id || question.id}> 
             <div>
-              <strong>{question.questionName}</strong> {/* Access question name from fetched data */}
+              <strong>{question.questionName}</strong> 
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <p>Difficulty: <span style={{ color: getColor(question.difficultyLevel) }}>{question.difficultyLevel}</span></p>
-                <Button>Solution</Button>
+               <Link to={`/aquestions/${question._id}`}> <Button>Solution</Button></Link>
               </div>
-              <hr /> {/* Add a horizontal line below each question */}
+              <hr /> 
             </div>
           </li>
         ))}
