@@ -12,7 +12,7 @@ const Solution = () => {
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/aquestions/${id}`);
+        const response = await axios.get(`https://techdosth-backend-1.onrender.com/aquestions/${id}`);
         setQuestion(response.data);
         console.log(response.data)
       } catch (err) {
