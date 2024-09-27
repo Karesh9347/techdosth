@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navb from './Navb';
 import Footer from './Footer';
-import { Container, ListGroup, Button } from 'react-bootstrap';
+import { Container, ListGroup, Button, Spinner } from 'react-bootstrap';
 import '../css/contest.css'
-
+import {Link} from 'react-router-dom'
 const Contest = () => {
   const [contest, setContest] = useState([]);
 
   useEffect(() => {
     const fetchContests = async () => {
       try {
-        const response = await axios.get("https://techdosth-backend-1.onrender.com/get-contest");
+        const response = await axios.get(" https://techdosth-backend-1.onrender.com/get-contest");
         if (response) {
           setContest(response.data);
         }
@@ -27,9 +27,9 @@ const Contest = () => {
   };
 const changeColor=(level)=>
 {
-  if(level=="Easy"){
+  if(level==="Easy"){
     return "green"
-  }else if(level=="Medium"){
+  }else if(level==="Medium"){
     return "orange"
   }else{
     return "red"
@@ -39,8 +39,9 @@ const changeColor=(level)=>
     <div>
       <Navb />
       <Container className="my-5">
-        <h3 className="text-center mb-4">Available Contests</h3>
+      
         <ListGroup>
+        <h3 className="text-center mb-4">Available Contests</h3>
           {contest.length > 0 ? contest.map((cont, index) => (
             <ListGroup.Item key={index} className="contest-item">
               <div className="contest-info">
@@ -49,11 +50,13 @@ const changeColor=(level)=>
                   </span>
                 </small>
               </div>
-              <button className='sbtn' onClick={() => goTo(cont.contestLink)}>
-                Solve
-              </button>
+             <Link to={`/contest/${cont._id}`} className='sbtn'>solve</Link>
+             
             </ListGroup.Item>
-          )) : <p className="text-center">No contests available at the moment.</p>}
+          )) :
+          <div><center>
+            <Spinner/>
+            </center> <p className="text-center">Loading</p></div>}
         </ListGroup>
       </Container>
       <Footer />
