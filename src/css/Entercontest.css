@@ -1,0 +1,61 @@
+.enter-contest-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contest-details {
+    padding: 20px;
+}
+
+.contest-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.contest-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.scoring-section h4 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.scoring-list {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    padding-left: 20px;
+    color: #555;
+}
+
+.scoring-list li {
+    margin-bottom: 10px;
+}
+
+.enter-contest-btn {
+    padding: 12px 40px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.enter-contest-btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.loading-text {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #777;
+}

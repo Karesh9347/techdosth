@@ -1,0 +1,11 @@
+.heading {
+    color: green; /* Same color */
+    font-size: 1.5rem; /* Increase the font size */
+    font-weight: 700; /* Bold weight */
+    text-align: center; /* Center-align the text */
+    letter-spacing: 1.5px; /* Add letter spacing for better readability */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 20px 0; /* Add vertical padding */
+    border-bottom: 2px solid rgba(0, 128, 0, 0.3); /* Subtle green border at the bottom */
+    margin-bottom: 30px; /* Add space after the heading */
+}

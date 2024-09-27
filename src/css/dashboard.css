@@ -1,0 +1,31 @@
+.user-profile {
+    margin: auto;
+    text-align: center;
+    border: 2px solid #007bff; /* Bootstrap primary color */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    max-width: 400px; /* Maximum width */
+}
+
+.user-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 50%; /* Circular image */
+}
+
+.user-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover image */
+}
+
+.user-name {
+    font-size: 1.8rem; /* Font size for username */
+    color: #007bff; /* Bootstrap primary color */
+    font-weight: bold; /* Make the font bold */
+    margin-top: 15px; /* Spacing above username */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
