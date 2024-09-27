@@ -13,7 +13,7 @@ const Entercontest = () => {
     useEffect(() => {
         const fetchQuestion = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/contest/${id}`);
+                const response = await axios.get(`https://techdosth-backend-1.onrender.com/contest/${id}`);
                 setQuestion(response.data);
             } catch (err) {
                 console.log(err);
