@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Form, Button, Container, Alert } from 'react-bootstrap'; // Importing required components from react-bootstrap
-import '../css/login.css'; // Importing custom CSS
-import axios from 'axios'; // Importing axios for HTTP requests
+import { Form, Button, Container, Alert } from 'react-bootstrap'; 
+
+import '../css/login.css'; 
+import axios from 'axios'; 
+
 import Navb from './Navb';
 import Footer from './Footer';
-import { Link} from 'react-router-dom'; // Importing Link from react-router-dom
+import { Link, Navigate, useNavigate} from 'react-router-dom'; 
+
 
 const Login = () => {
     
@@ -12,10 +15,10 @@ const Login = () => {
         username: "",
         password: ""
     });
-    const [type, setType] = useState('password'); // State to control the password input type
-    const [message, setMessage] = useState(''); // State to handle success or error messages
-    const [error, setError] = useState(false); // State to determine if it's an error
-  
+    const [type, setType] = useState('password'); 
+    const [message, setMessage] = useState(''); 
+    const [error, setError] = useState(false); 
+  const navigate=useNavigate();
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -41,7 +44,10 @@ const Login = () => {
                     password: ""
                 });
                
-                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('isLogin', true);
+                localStorage.setItem('user',JSON.stringify(res.data))
+               navigate("/")
+               
                
             }
         } catch (err) {
