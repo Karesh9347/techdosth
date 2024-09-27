@@ -16,13 +16,37 @@ const Solution = () => {
         const response = await axios.get(`https://techdosth-backend-1.onrender.com/aquestions/${id}`);
         setQuestion(response.data);
        
-        console.log(response.data)
       } catch (err) {
         console.log(err);
       }
     };
     fetchQuestion();
   }, [id]);
+  function formateDescription(des){
+    const l=des.length
+    var para=""
+    let arr=[]
+    for(var i=0;i<l;i++){
+      if(des[i]==="*" && para.length>=30){
+        arr.push(para)
+        para=""
+       
+        
+      }else{
+        para+=des.charAt(i)
+      }
+    }
+   
+    return (
+      <div>
+        {arr.map((item, index) => (
+          <p key={index}>{item}</p>
+        ))}
+      </div>
+    );
+   
+  }
+  
   
   return (
     <div>
@@ -35,7 +59,7 @@ const Solution = () => {
           <br />
           <strong className='head'>Description:</strong>
         
-          <p> {question.description}</p>
+          <p> {formateDescription(question.description)}</p>
        
          <div style={{width:"100%",height:"100%"}}>
           <strong>Solutions:</strong>
