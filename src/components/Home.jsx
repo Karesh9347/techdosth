@@ -25,6 +25,10 @@ import Recursion from './Recursion'
 import Contest from './Contest'
 import Aptitude from './Aptitude'
 import Solution from './Solution'
+import Atopics from './Atopics'
+import Dashboard from './Dashboard'
+import Entercontest from './Entercontest'
+
 const Home = () => {
  
   return (
@@ -35,8 +39,11 @@ const Home = () => {
         <Routes>
           <Route path="/" element={<Hero/>}/>
           <Route path="/questions/:id" element={<QuestionDetail/>} />
+          <Route path="/contest/:id" element={<Entercontest/>} />
           <Route path="/aquestions/:id" element={<Solution/>} />
+          <Route path="/aptitude/:topic" element={<Atopics/>} />
           <Route path="/login" element={<Login/>}/>
+          <Route path="/profile" element={<Dashboard/>}/>
           <Route path="/contest" element={<Contest/>}/>
           <Route path="/recursion" element={<Recursion/>}/>
           <Route path="/contact" element={<Contact/>}/>
