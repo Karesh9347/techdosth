@@ -2,10 +2,13 @@ import React from 'react';
 import { Navbar, Nav, Container, Offcanvas } from 'react-bootstrap';
 import { House, Book, Person, Pen, Code, CodeSquare, Lightbulb } from 'react-bootstrap-icons';
 import '../css/nav.css';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
 function Navb() {
+  const user = JSON.parse(localStorage.getItem("user")) || null; // Fallback to null if parsing fails
+ 
+
   return (
-    
     <Navbar bg="light" expand="lg" className="mb-3">
       <Container fluid>
         <Navbar.Brand href="#home">
@@ -31,43 +34,47 @@ function Navb() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link as={Link} to="/"  >
-                <div style={{display:"flex"}}>
-                  <CodeSquare className="me-2" size={25} />
-                  <h5>DSA</h5>
-                  </div>
-
-                </Nav.Link>
-                <Nav.Link as={Link} to="/aptitude"  >
-                <div style={{display:"flex"}}>
-                  <Lightbulb className="me-2" size={25} />
-                  <h5>Aptitude</h5>
-                  </div>
-
-                </Nav.Link>
-                <Nav.Link as={Link} to="/contest"  >
-                <div style={{display:"flex"}}>
-                  <Pen className="me-2" size={25} />
-                  <h5>contest</h5>
-                  </div>
-
-                </Nav.Link>
-          
-                <Nav.Link  as={Link} to="/courses">
-                  <div style={{display:"flex"}}>
-                  <Book className="me-2" size={25}/>
-                  <h5>Courses</h5>
-
+                <Nav.Link as={Link} to="/">
+                  <div style={{ display: "flex" }}>
+                    <CodeSquare className="me-2" size={25} />
+                    <h5>DSA</h5>
                   </div>
                 </Nav.Link>
-               <div>
-                <Nav.Link as={Link} to='/login'>
-                <div style={{display:"flex"}}>
-                  <Person className="me-2" size={25}/>
-                  <h5>Account</h5>
+                <Nav.Link as={Link} to="/aptitude">
+                  <div style={{ display: "flex" }}>
+                    <Lightbulb className="me-2" size={25} />
+                    <h5>Aptitude</h5>
                   </div>
                 </Nav.Link>
-              </div>  
+                <Nav.Link as={Link} to="/contest">
+                  <div style={{ display: "flex" }}>
+                    <Pen className="me-2" size={25} />
+                    <h5>Contest</h5>
+                  </div>
+                </Nav.Link>
+                <Nav.Link as={Link} to="/courses">
+                  <div style={{ display: "flex" }}>
+                    <Book className="me-2" size={25} />
+                    <h5>Courses</h5>
+                  </div>
+                </Nav.Link>
+                <div>
+                  {user ? (
+                    <Nav.Link as={Link} to='/profile'>
+                      <div style={{ display: "flex" }}>
+                        <Person className="me-2" size={25} />
+                        <h5>{user.user.username}</h5>
+                      </div>
+                    </Nav.Link>
+                  ) : (
+                    <Nav.Link as={Link} to='/login'>
+                      <div style={{ display: "flex" }}>
+                        <Person className="me-2" size={25} />
+                        <h5>Account</h5>
+                      </div>
+                    </Nav.Link>
+                  )}
+                </div>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
