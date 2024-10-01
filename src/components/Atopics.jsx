@@ -12,7 +12,7 @@ const Atopics = () => {
   const arr=JSON.parse(localStorage.getItem("question"))
   console.log(arr)
   const aptitudeTopics = {
-    "percentages": ["percentage", "RP", "pr", "Percentage", "Percentages", "percentages"],
+    "percentages": ["percentage", "PR", "pr", "Percentage", "Percentages", "percentages"],
     "ratios-proportions": ["RP", "ratios"],
     "averages": ["AVG", "averages"],
     "time-Work": ["time", "work"],
