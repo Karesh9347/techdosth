@@ -47,18 +47,18 @@ const QuestionsList = () => {
   };
 
   return (
-    <Container style={{ marginTop: "20px" }}>
+    <Container style={{marginTop:"-70px"}}>
       <Row className="mb-3">
         <Col>
           <center>
-          <h5 className="heading">DSA Questions with Solutions </h5>
+          <h5 id="heading">DSA Questions with Solutions </h5>
           </center>
         </Col>
       </Row>
 
       {error && <Alert variant="danger">{error}</Alert>}
 
-      <Row>
+      <Row >
         <Col>
           <div className="table-responsive">
             <Table striped bordered hover>
