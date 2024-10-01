@@ -51,7 +51,7 @@ const QuestionsList = () => {
       <Row className="mb-3">
         <Col>
           <center>
-          <h5 id="heading">DSA Questions with Solutions </h5>
+          <h6 id="heading">DSA Questions & Solutions </h6>
           </center>
         </Col>
       </Row>
