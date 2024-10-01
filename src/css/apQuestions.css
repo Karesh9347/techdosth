@@ -14,4 +14,10 @@
     display: flex;
     gap: 10px;
   }
-  
+  .heading1{
+    border-bottom: 3px solid rgb(137, 16, 194);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:rgb(219, 12, 64);
+    width: fit-content;
+    
+  }
