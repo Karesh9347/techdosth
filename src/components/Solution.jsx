@@ -36,6 +36,7 @@ const Solution = () => {
         para+=des.charAt(i)
       }
     }
+    arr.push(para)
    
     return (
       <div>
