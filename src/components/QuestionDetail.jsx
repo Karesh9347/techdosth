@@ -17,7 +17,7 @@ const QuestionDetail = () => {
   useEffect(() => {
     const fetchQuestionDetails = async () => {
       try {
-        const response = await axios.get(`https://techdosth-backend-1.onrender.com/questions/${id}`);
+        const response = await axios.get(`https://techdosth-backend.onrender.com/questions/${id}`);
         setQuestion(response.data);
         // Initialize images for each approach
         if (response.data.images) {
