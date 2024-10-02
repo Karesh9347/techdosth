@@ -35,7 +35,7 @@ const Login = () => {
         e.preventDefault(); // Prevent form default submission behavior
         
         try {
-            const res = await axios.post('https://techdosth-backend-1.onrender.com/login-users', formData); // Assuming this is the login endpoint
+            const res = await axios.post('https://techdosth-backend.onrender.com/login-users', formData); // Assuming this is the login endpoint
             if (res.status === 200) {
                 setMessage("User logged in successfully!");
                 setError(false); // No error occurred
