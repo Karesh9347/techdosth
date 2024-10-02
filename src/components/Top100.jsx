@@ -15,7 +15,7 @@ const Top100 = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get('https://techdosth-backend-1.onrender.com/questions');
+        const response = await axios.get('https://techdosth-backend.onrender.com/questions');
        
         const top100Questions = response.data; // Assuming all questions are needed for the top 100
         setQuestions(top100Questions);
