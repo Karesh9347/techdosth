@@ -13,7 +13,7 @@ const Entercontest = () => {
     useEffect(() => {
         const fetchQuestion = async () => {
             try {
-                const response = await axios.get(`https://techdosth-backend.onrender.com/contest/${id}`);
+                const response = await axios.get(`http://localhost:5000/contest/${id}`);
                 setQuestion(response.data);
             } catch (err) {
                 console.log(err);
@@ -25,6 +25,33 @@ const Entercontest = () => {
     const goTo = (link) => {
         window.open(link);
     };
+
+    useEffect(() => {
+        if (question) {  // Ensure the question has loaded
+            const adContainer = document.getElementById("ad-container");
+            if (adContainer) {
+                const adScript = document.createElement("script");
+                adScript.type = "text/javascript";
+                adScript.innerHTML = `
+                    atOptions = {
+                        'key' : '538ace07128c1e6dcbd20d81ec51c959',
+                        'format' : 'iframe',
+                        'height' : 250,
+                        'width' : 300,
+                        'params' : {}
+                    };
+                `;
+                adContainer.appendChild(adScript);
+
+                const adSrcScript = document.createElement("script");
+                adSrcScript.type = "text/javascript";
+                adSrcScript.src = "//www.topcreativeformat.com/538ace07128c1e6dcbd20d81ec51c959/invoke.js";
+                adContainer.appendChild(adSrcScript);
+            } else {
+                console.error("Ad container not found");
+            }
+        }
+    }, [question]); // Ensure the useEffect runs after the question is loaded
 
     const style = {
         fontWeight: 800,
@@ -48,6 +75,10 @@ const Entercontest = () => {
                             Enter Contest
                         </Button>
                     </div>
+
+                    {/* Ad Section */}
+                    <div id="ad-container" className="text-center mt-4"></div>
+
                     <Container className="enter-contest-container mt-4">
                         <h4>Scoring</h4>
                         <ul className="scoring-list">
