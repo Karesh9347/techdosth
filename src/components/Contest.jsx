@@ -11,7 +11,7 @@ const Contest = () => {
   useEffect(() => {
     const fetchContests = async () => {
       try {
-        const response = await axios.get(" https://techdosth-backend-1.onrender.com/get-contest");
+        const response = await axios.get(" https://techdosth-backend.onrender.com/get-contest");
         if (response) {
           setContest(response.data);
         }
