@@ -93,6 +93,7 @@ const Entercontest = () => {
             ) : (
                 <p className="loading-text">Loading contest details...</p>
             )}
+             <div id="ad-container" className="text-center mt-4"></div>
             <Footer/>
         </div>
     );
