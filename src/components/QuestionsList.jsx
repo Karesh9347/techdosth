@@ -13,7 +13,7 @@ const QuestionsList = () => {
     const fetchQuestions = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('https://techdosth-backend-1.onrender.com/questions');
+        const response = await axios.get('https://techdosth-backend.onrender.com/questions');
         setQuestions(response.data);
       } catch (err) {
         setError('Error fetching questions: ' + err.message);
