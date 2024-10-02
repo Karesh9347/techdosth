@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Container, Alert, ButtonGroup, Button } from "react-bootstrap";
-import '../css/soltions.css'; // Import the CSS file
+import '../css/soltions.css';
 import Navb from "./Navb";
 import Footer from "./Footer";
 
@@ -10,24 +10,24 @@ const QuestionDetail = () => {
   const { id } = useParams();
   const [question, setQuestion] = useState(null);
   const [error, setError] = useState(null);
-  const [brute, setBrute] = useState(null);
-  const [better, setBetter] = useState(null);
-  const [optimize, setOptimize] = useState(null);
+  const [bruteForceImage, setBruteForceImage] = useState(null);
+  const [betterImage, setBetterImage] = useState(null);
+  const [optimizedImage, setOptimizedImage] = useState(null);
 
   useEffect(() => {
     const fetchQuestionDetails = async () => {
       try {
         const response = await axios.get(`https://techdosth-backend.onrender.com/questions/${id}`);
-        setQuestion(response.data);
-        // Initialize images for each approach
-        if (response.data.images) {
-          setBrute(`data:image/png;base64,${response.data.images.pythonBruteForce}`);
-          setBetter(`data:image/png;base64,${response.data.images.pythonBetter}`);
-          setOptimize(`data:image/png;base64,${response.data.images.pythonOptimized}`);
+        const data = response.data;
+        setQuestion(data);
+
+        if (data.images) {
+          setBruteForceImage(`data:image/png;base64,${data.images.pythonBruteForce}`);
+          setBetterImage(`data:image/png;base64,${data.images.pythonBetter}`);
+          setOptimizedImage(`data:image/png;base64,${data.images.pythonOptimized}`);
         }
       } catch (err) {
         setError("Error fetching question details: " + err.message);
-        console.error("Error:", err.message);
       }
     };
 
@@ -35,19 +35,47 @@ const QuestionDetail = () => {
   }, [id]);
 
   useEffect(() => {
-    // Load the Google AdSense script when the component mounts
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-    script.setAttribute("data-ad-client", "ca-pub-6817331680883128");
-    script.crossOrigin = "anonymous";
-    document.body.appendChild(script);
+    if (question) {  // Ensure the question has loaded
+        const adContainer = document.getElementById("ad-container");
+        if (adContainer) {
+            const adScript = document.createElement("script");
+            adScript.type = "text/javascript";
+            adScript.innerHTML = `
+                atOptions = {
+                    'key' : '538ace07128c1e6dcbd20d81ec51c959',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            `;
+            adContainer.appendChild(adScript);
 
-    return () => {
-      // Clean up by removing the script
-      document.body.removeChild(script);
-    };
-  }, []);
+            const adSrcScript = document.createElement("script");
+            adSrcScript.type = "text/javascript";
+            adSrcScript.src = "//www.topcreativeformat.com/538ace07128c1e6dcbd20d81ec51c959/invoke.js";
+            adContainer.appendChild(adSrcScript);
+        } else {
+            console.error("Ad container not found");
+        }
+    }
+}, [question]); // Ensure the useEffect runs after the question is loaded
+
+
+  const handleImageChange = (solutionType, language) => {
+    if (!question || !question.images) return;
+
+    const imageKey = `${language}${solutionType}`;
+    const imageData = question.images[imageKey];
+
+    if (solutionType === 'BruteForce') {
+      setBruteForceImage(`data:image/png;base64,${imageData}`);
+    } else if (solutionType === 'Better') {
+      setBetterImage(`data:image/png;base64,${imageData}`);
+    } else if (solutionType === 'Optimized') {
+      setOptimizedImage(`data:image/png;base64,${imageData}`);
+    }
+  };
 
   if (error) {
     return <Alert variant="danger">{error}</Alert>;
@@ -65,98 +93,66 @@ const QuestionDetail = () => {
     );
   }
 
-  // Helper function to get base64 image data
-  const getBase64Image = (imageName) => {
-    return question.images && question.images[imageName]
-      ? `data:image/png;base64,${question.images[imageName]}`
-      : null;
-  };
-
-  const cppBruteForceImage = getBase64Image("cppBruteForce");
-  const cppBetterImage = getBase64Image("cppBetter");
-  const cppOptimizedImage = getBase64Image("cppOptimized");
-  const pythonBruteForceImage = getBase64Image("pythonBruteForce");
-  const pythonBetterImage = getBase64Image("pythonBetter");
-  const pythonOptimizedImage = getBase64Image("pythonOptimized");
-  const javaBruteForceImage = getBase64Image("javaBruteForce");
-  const javaBetterImage = getBase64Image("javaBetter");
-  const javaOptimizedImage = getBase64Image("javaOptimized");
-
   return (
     <div>
       <Navb />
-
       <Container className="container">
-        <h2>{question.QuestionName}</h2>
-        <h4>Description:</h4><p>{question.description}</p>
+        <div style={{ display: 'flex' }}>
+          {/* Main Content */}
+          <div>
+            <h2 >{question.QuestionName}</h2>
+            <h4 >Description:</h4>
+            <strong style={{color:"black"}}>{question.description}</strong>
 
-        {/* Brute Force Solution */}
-        <div className="solution-section">
-          <h5>Brute Force Approach</h5>
-          <div className="solution-header">
-            <ButtonGroup style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-              <Button onClick={() => setBrute(pythonBruteForceImage)}>Python</Button>
-              <Button onClick={() => setBrute(cppBruteForceImage)} className="btn-warning">C++</Button>
-              <Button onClick={() => setBrute(javaBruteForceImage)} className="btn-success">Java</Button>
-            </ButtonGroup>
-          </div>
-          <div className="solution-body">
-            {brute ? (
-              <img src={brute} alt="Brute Force Approach" className="solution-image" />
-            ) : (
-              <p>No image available, we will update soon</p>
-            )}
-          </div>
+            {/* Brute Force Solution */}
+            <div className="solution-section">
+              <h5>Brute Force Approach</h5>
+              <ButtonGroup style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                <Button onClick={() => handleImageChange('BruteForce', 'python')}>Python</Button>
+                <Button onClick={() => handleImageChange('BruteForce', 'cpp')} className="btn-warning">C++</Button>
+                <Button onClick={() => handleImageChange('BruteForce', 'java')} className="btn-success">Java</Button>
+              </ButtonGroup>
+              <div className="solution-body">
+                {bruteForceImage ? <img src={bruteForceImage} alt="Brute Force Approach" className="solution-image" /> : <p>No image available</p>}
+              </div>
+              <small>Time Complexity: {question.complexities.tc1}</small><br/>
+              <small>Space Complexity: {question.complexities.sc1}</small>
+            </div>
 
-          {/* Additional content under Brute Force Approach */}
-          <p>Time Complexity: {question.complexities.tc1}</p>
-          <p>Space Complexity: {question.complexities.sc1}</p>
+           
+            {/* Better Solution */}
+            <div className="solution-section">
+              <h5>Better Approach</h5>
+              <ButtonGroup style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                <Button onClick={() => handleImageChange('Better', 'python')}>Python</Button>
+                <Button onClick={() => handleImageChange('Better', 'cpp')} className="btn-warning">C++</Button>
+                <Button onClick={() => handleImageChange('Better', 'java')} className="btn-success">Java</Button>
+              </ButtonGroup>
+              <div className="solution-body">
+                {betterImage ? <img src={betterImage} alt="Better Approach" className="solution-image" /> : <p>No image available</p>}
+              </div>
+              <small>Time Complexity: {question.complexities.tc2}</small><br/>
+              <small>Space Complexity: {question.complexities.sc2}</small>
+            </div>
+           
+            {/* Optimized Solution */}
+            <div className="solution-section">
+              <h5>Optimized Approach</h5>
+              <ButtonGroup style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                <Button onClick={() => handleImageChange('Optimized', 'python')}>Python</Button>
+                <Button onClick={() => handleImageChange('Optimized', 'cpp')} className="btn-warning">C++</Button>
+                <Button onClick={() => handleImageChange('Optimized', 'java')} className="btn-success">Java</Button>
+              </ButtonGroup>
+              <div className="solution-body">
+                {optimizedImage ? <img src={optimizedImage} alt="Optimized Approach" className="solution-image" /> : <p>No image available</p>}
+              </div>
+              <small>Time Complexity: {question.complexities.tc3}</small><br/>
+              <small>Space Complexity: {question.complexities.sc3}</small>
+            </div>
+            <div id="ad-container" className="text-center mt-4"></div>
 
-          {/* Google AdSense Ad */}
-          <div className="ads-section">
-            <ins className="adsbygoogle"
-                 style={{ display: "block" }}
-                 data-ad-client="ca-pub-6817331680883128"
-                 data-ad-slot="8987415025"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
           </div>
         </div>
-
-        {/* Better Solution */}
-        <div className="solution-section">
-          <h5>Better Approach</h5>
-          <div className="solution-header">
-            <ButtonGroup style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-              <Button onClick={() => setBetter(pythonBetterImage)}>Python</Button>
-              <Button onClick={() => setBetter(cppBetterImage)} className="btn-warning">C++</Button>
-              <Button onClick={() => setBetter(javaBetterImage)} className="btn-success">Java</Button>
-            </ButtonGroup>
-          </div>
-          <div className="solution-body">
-            {better ? <img src={better} alt="Better Approach" className="solution-image" /> : <p>No image available</p>}
-          </div>
-          <p>Time Complexity: {question.complexities.tc2}</p>
-          <p>Space Complexity: {question.complexities.sc2}</p>
-        </div>
-
-        {/* Optimized Solution */}
-        <div className="solution-section">
-          <h5>Optimized Approach</h5>
-          <div className="solution-header">
-            <ButtonGroup style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-              <Button onClick={() => setOptimize(pythonOptimizedImage)}>Python</Button>
-              <Button onClick={() => setOptimize(cppOptimizedImage)} className="btn-warning">C++</Button>
-              <Button onClick={() => setOptimize(javaOptimizedImage)} className="btn-success">Java</Button>
-            </ButtonGroup>
-          </div>
-          <div className="solution-body">
-            {optimize ? <img src={optimize} alt="Optimized Approach" className="solution-image" /> : <p>No image available</p>}
-          </div>
-          <p>Time Complexity: {question.complexities.tc3}</p>
-          <p>Space Complexity: {question.complexities.sc3}</p>
-        </div>
-
       </Container>
       <Footer />
     </div>
