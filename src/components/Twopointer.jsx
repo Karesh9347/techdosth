@@ -25,7 +25,7 @@ const Twopointer = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get('https://techdosth-backend-1.onrender.com/questions');
+        const response = await axios.get('https://techdosth-backend.onrender.com/questions');
        
         // Filter questions with the "two-pointer" hashtag
         const twoPointerQuestions = response.data.filter(question =>
