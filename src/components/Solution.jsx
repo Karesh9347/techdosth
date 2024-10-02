@@ -13,7 +13,7 @@ const Solution = () => {
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
-        const response = await axios.get(`https://techdosth-backend-1.onrender.com/aquestions/${id}`);
+        const response = await axios.get(`https://techdosth-backend.onrender.com/aquestions/${id}`);
         setQuestion(response.data);
        
       } catch (err) {
