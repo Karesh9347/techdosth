@@ -25,7 +25,7 @@ const Window = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get('https://techdosth-backend-1.onrender.com/questions');
+        const response = await axios.get('https://techdosth-backend.onrender.com/questions');
        
         const windowQuestions = response.data.filter(question =>
           question.hashtags.includes('window')
