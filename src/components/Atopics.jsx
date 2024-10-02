@@ -21,7 +21,7 @@ const Atopics = () => {
 
   useEffect(() => {
     axios
-      .get("https://techdosth-backend-1.onrender.com/get-aptitude")
+      .get("https://techdosth-backend.onrender.com/get-aptitude")
       .then((response) => {
         const data = response.data;
         const arr = [];
