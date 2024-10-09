@@ -43,7 +43,7 @@ const Courses = () => {
   return (
     <div>
       <Navb />
-      <Container className="courses-container" >
+      <Container className="courses-container" style={{marginTop:"30px"}}>
         <aside className="sidebar" >
           {arr.length > 0 ? (
             arr.map((item, index) => (
