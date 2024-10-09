@@ -1,31 +1,104 @@
-/* Courses.css */
-.courses-container {
-    text-align: center;
-    padding: 2rem;
-    background: #f9f9f9;
-    color: #333;
-  }
-  
-  .courses-container h1 {
-    font-size: 2rem;
-    font-weight: bold;
+/* courses.css */
 
-    color: #007bff; /* Blue color for the heading */
+/* Base Styles for All Screens */
+.courses-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-top: -35px;
+}
+
+.sidebar {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-right: 2px solid #ddd;
+}
+
+.sidebar h6 {
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.sidebar h6:hover {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+.active-subject {
+  border-bottom: 2px solid red;
+  font-weight: bold;
+  background-color: #e9ecef;
+  border-radius: 5px;
+}
+
+.questions-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+#question-container {
+  margin-bottom: 20px;
+}
+
+#question-container details summary {
+  cursor: pointer;
+}
+
+#question-container details summary:hover {
+  color: #007bff;
+}
+
+/* Desktop-specific Layout */
+@media (min-width: 768px) {
+  .sidebar {
+    min-width: 200px;
+    max-width: 250px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    flex-direction: column;
   }
-  
-  .courses-container p {
-    font-size: 1.1rem;
-   
-    color: #666;
+}
+
+/* Mobile-specific Layout */
+@media (max-width: 767px) {
+  .courses-container {
+    flex-direction: column;
   }
-  
- 
-  .img-con{
+
+  .sidebar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-right: none;
+    border-bottom: 2px solid #ddd;
     width: 100%;
-    height: 100%;
+    height: auto;
+    position: relative;
+    top: 0;
+    overflow-x: auto; /* Enables horizontal scroll */
+    scroll-snap-type: x mandatory; /* Optional for smooth scroll snap */
   }
-  .img-con img{
-    width: 50%;
-    height: 50%;
+
+  .sidebar::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for a clean look */
   }
-  
+
+  .sidebar h6 {
+    flex: 0 0 auto;
+    text-align: center;
+    margin-bottom: 0;
+    padding: 10px 20px;
+  }
+
+  .active-subject {
+    border-bottom: none;
+    border-right: 2px solid red;
+  }
+
+  .questions-content {
+    padding-top: 20px;
+  }
+}
