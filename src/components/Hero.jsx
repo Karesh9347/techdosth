@@ -1,65 +1,112 @@
-// Hero.js
-
-import {React} from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/hero.css'; // Import the CSS file
-import QuestionsList from './QuestionsList';
+import '../css/hero.css';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import Navb from './Navb';
-
-// Sample data for more questions
-const questions = [
-  { id: 1, title: 'Top 100 Interview Questions', image: '/top100.jpeg', description: 'Comprehensive list of the top 100 interview questions across various topics.', url: '/top100' },
-  { id: 2, title: 'Arrays', image: '/array.webp', description: 'Key algorithms essential for technical interviews and coding assessments.', url: '/arrays' },
-  { id: 3, title: 'Searching Algorithms', image: '/search.png', description: 'Common searching algorithms and their use cases.', url: '/searching' },
-  { id: 4, title: 'Sorting Algorithms', image: '/sorting.webp', description: 'Different sorting algorithms and their applications.', url: '/sorting' },
-  { id: 5, title: 'Greedy Algorithms', image: '/greedy.png', description: 'Dynamic programming problems and solutions for coding interviews.', url: '/greedy' },
-  { id: 6, title: 'Hashmap and Hashset', image: '/hashing.webp', description: 'Graph-related questions and problems for technical interviews.', url: '/hashing' },
-  { id: 7, title: 'Two Pointer Algorithms', image: '/twopointer.jpeg', description: 'Dynamic programming problems and solutions for coding interviews.', url: '/two-pointer' },
-  { id: 8, title: 'Sliding Window Algorithms', image: '/sliding.webp', description: 'Graph-related questions and problems for technical interviews.', url: '/sliding-window' },
-  { id: 9, title: 'Linked List', image: '/linked-list.webp', description: 'System design interview questions and concepts.', url: '/linked-list' },
-  { id: 10, title: 'Stack and Queue', image: '/stack.png', description: 'Questions related to database management and SQL.', url: '/stack-and-queues' },
-  { id: 11, title: 'Tree Algos and Problems', image: '/trees.webp', description: 'Concurrency issues and solutions in programming.', url: '/trees' },
-  { id: 12, title: 'Dynamic Programming', image: '/dp.webp', description: 'Dynamic programming problems and solutions for coding interviews.', url: '/dp' },
-  { id: 13, title: 'Graph Theory and Algo', image: '/graph.webp', description: 'Graph-related questions and problems for technical interviews.', url: '/graph' },
-  { id: 14, title: 'Recursion Theory and Algo', image: '/recursion.png', description: 'Recursion-related questions and problems for technical interviews.', url: '/recursion' },
-  // Add more questions as needed
-];
+import axios from 'axios';
 
 const Hero = () => {
+  const [queryOfTheDay, setQueryOfTheDay] = useState(null);
+  const [problemOfTheDay, setProblemOfTheDay] = useState(null);
 
+  useEffect(() => {
+    const fetchQueries = async () => {
+      try {
+        const response = await axios.get('https://techdosth-backend.onrender.com/get-all-queries');
+        if (response.data.length > 0) {
+          const latestQuery = response.data[response.data.length - 1];
+          setQueryOfTheDay(latestQuery);
+          localStorage.setItem("query", JSON.stringify(latestQuery));
+        }
+      } catch (error) {
+        console.error('Error fetching queries:', error);
+      }
+    };
+
+    const fetchProblem = async () => {
+      try {
+        const response = await axios.get('https://techdosth-backend.onrender.com/get-all-problems');
+        if (response.data.length > 0) {
+          const latestProblem = response.data[response.data.length - 1];
+          setProblemOfTheDay(latestProblem);
+          localStorage.setItem("problem", JSON.stringify(latestProblem));
+        }
+      } catch (error) {
+        console.error('Error fetching problems:', error);
+      }
+    };
+
+    fetchQueries();
+    fetchProblem();
+  }, []);
+
+  const formatDate = () => {
+    const today = new Date();
+    return today.toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' });
+  };
   return (
     <div>
-     <Navb/>
-      <Container fluid className="px-3" id='img-div'>
-        <div className="horizontal-scroll">
-          <Row className="gx-4">
-            {questions.map((question) => (
-              <Col xs={2} sm={6} md={3} lg={2} key={question.id} className="mb-4">
-                <Link to={question.url} style={{ textDecoration: 'none' }}>
-                  <Card>
-                    <Card.Body style={{ backgroundColor: "#E6E6FA" }}>
-                      <Card.Img variant="top" src={question.image} className="mb-4" />
-                      <Card.Title>{question.title}</Card.Title>
-                      <Card.Text style={{ textDecoration: "none", color: "inherit" }}>
-                        {question.description}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-                </Link>
-              </Col>
-            ))}
-          </Row>
-          <div className="scroll-indicator">
-            &rarr; {/* Arrow symbol for scroll indication */}
-          </div>
+      <Navb />
+      <div className="px-3" id="img-div">
+        <div id="welcome-container">
+          <h1>👋 Hello Coders, Welcome to TechDosth! 🚀</h1>
+          <p>
+            TechDosth empowers aspiring coders with coding challenges, aptitude questions, and weekly contests. Focused on Data Structures and Algorithms (DSA), it equips learners with essential skills for coding interviews. Join us to enhance your coding journey and connect with a supportive community.
+          </p>
+          <Link to="/login">
+            <button className="login-button" style={{ width: "250px" ,fontSize:"20px",fontWeight:"600px"}}>Login</button>
+          </Link>
         </div>
-      </Container>
-      {/* Pass the 'searchItems' prop with a value of 'none' */}
-      <QuestionsList searchItems="none" />
-      <Footer/>
+        <Container>
+          <Row className='g-3'>
+            <Col md={6} lg={6}>
+              <div className="problem-card">
+                <h3 className="card-title">Problem of the Day</h3>
+                {problemOfTheDay ? (
+                  <>
+                    <div>{problemOfTheDay.QuestionName}</div>
+                    <p>{formatDate(problemOfTheDay.createdAt)}</p> {/* Displaying the date */}
+                    <Link to={`/editor/${problemOfTheDay._id}`}>
+                      <button id="button">Solve</button>
+                    </Link>
+                    <hr />
+                    <div style={{ display: "flex", justifyContent: "space-between", marginTop: "5px" }}>
+                      <p>Asked in: Amazon, Google</p>
+                      <p>Difficulty: {problemOfTheDay.difficulty}</p>
+                    </div>
+                  </>
+                ) : (
+                  <strong>Loading...</strong>
+                )}
+              </div>
+            </Col>
+            <Col md={6} lg={6}>
+              <div className="query-card">
+                <h3 className="card-title">Query of the Day</h3>
+                {queryOfTheDay ? (
+                  <>
+                    <div>{queryOfTheDay.shortName}</div>
+                    <p>{formatDate(queryOfTheDay.createdAt)}</p> {/* Displaying the date */}
+                    <Link to={`/sqlEditor/${queryOfTheDay._id}`}>
+                      <button id="button">Solve</button>
+                    </Link>
+                    <hr />
+                    <div style={{ display: "flex", justifyContent: "space-between", marginTop: "5px" }}>
+                      <p>Asked in: Wipro, TCS</p>
+                      <p>Difficulty: Easy</p>
+                    </div>
+                  </>
+                ) : (
+                  <strong>Loading...</strong>
+                )}
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+      <Footer />
     </div>
   );
 };
