@@ -1,4 +1,4 @@
-import {React,useState} from 'react'
+import {React} from 'react'
 
 import Hero from './Hero'
 import Arrays from './Arrays'
@@ -28,6 +28,13 @@ import Solution from './Solution'
 import Atopics from './Atopics'
 import Dashboard from './Dashboard'
 import Entercontest from './Entercontest'
+import Code from './Code'
+import ErrorBoundary from './ErrorBoundary';
+import Query from './Query'
+import Programming from './Programming'
+import { ArchivedSQL } from './ArchivedSQL'
+
+
 
 const Home = () => {
  
@@ -36,8 +43,16 @@ const Home = () => {
     <div>
     
         <BrowserRouter>
+        <ErrorBoundary>
         <Routes>
-          <Route path="/" element={<Hero/>}/>
+         
+      
+         
+          <Route path='/' element={<Hero/>}/>
+          <Route path='/dsa' element={<Programming/>}/>
+          <Route path='/sql-queries' element={<ArchivedSQL/>}/>
+          <Route path="/editor/:id" element={<Code/>}/>
+          <Route path="/sqlEditor/:id" element={<Query/>}/>
           <Route path="/questions/:id" element={<QuestionDetail/>} />
           <Route path="/contest/:id" element={<Entercontest/>} />
           <Route path="/aquestions/:id" element={<Solution/>} />
@@ -65,6 +80,7 @@ const Home = () => {
           <Route path="/courses" element={<Courses/>}/>
           <Route path='/aptitude' element={<Aptitude/>}/>
         </Routes>
+        </ErrorBoundary>
         </BrowserRouter>
       
     </div>
