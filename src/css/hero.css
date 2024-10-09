@@ -1,140 +1,104 @@
-/* src/css/hero.css */
+#img-div {
+  background: linear-gradient(90deg, rgba(28, 119, 172, 0.8) 0%, rgba(230, 39, 57, 0.8) 100%);
+  padding: 50px 0;
+}
 
-/* Container and row styling */
-.card{
-  background-color:rgb(170, 3, 185);
-  
+.problem-card, .query-card {
+  background-image: linear-gradient(60deg,rgb(176, 208, 218),rgb(197, 182, 160)); /* Attractive light green */
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  text-align: center;
+  font-size: larger;
+  font-weight: 600;
+}
+
+.card-title {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+#button {
+  background-color: #28a745; /* Green for buttons */
+  color: white;
+  border: none;
+  padding: 8px 15px; /* Decreased button width */
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 150px; /* Decreased button width */
+}
+
+#button:hover {
+  background-color: #f54c09; /* Darker green on hover */
+}
+
+
+
+#welcome-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#welcome-container h1 {
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: -10px;
+}
+
+#welcome-container p {
+  color: #030405;
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 500;
+}
+
+hr {
+  border-top: 1px solid #d0e6f7;
+  margin: 15px 0;
+}
+
+.problem-card p, .query-card p {
+  color: #393f4d;
+  font-size: 16px;
+}
+
+.problem-card div, .query-card div {
+  margin-bottom: 10px;
+}
+
+.problem-card p:last-child, .query-card p:last-child {
+  margin-top: auto;
 }
 
 .container {
-    margin-top: 2rem;
-    margin-bottom: 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .problem-card, .query-card {
+    padding: 10px;
   }
-  
-  .row {
-    margin-bottom: 2rem;
-  }
-  
-  /* Card styling */
-  .card {
-    border: none;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-    background: #ffffff;
-    position: relative; /* Required for the pseudo-element positioning */
-  }
-  
-  /* Hover effect for the card */
-  .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* Pseudo-element for the border effect */
-  .card::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    width: calc(100% + 20px);
-    height: calc(100% + 20px);
-    border: 2px solid #007bff; /* Border color */
-    border-radius: 15px;
-    transition: opacity 0.3s ease;
-    opacity: 0;
-    pointer-events: none; /* Prevent interaction with the pseudo-element */
-  }
-  
-  /* Show the border effect on hover */
-  .card:hover::before {
-    opacity: 1;
-  }
-  
-  /* Card image styling */
-  .card-img-top {
-    object-fit: cover;
-    border-bottom: 2px solid #ddd;
-  }
-  
-  /* Card body styling */
-  .card-body {
-    padding: 1.5rem;
-    background: #f9f9f9;
-  }
-  
-  /* Card title styling */
+
   .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #007bff; /* Blue color for title */
-    text-align: center;
-    margin-bottom: 0.5rem;
+    font-size: 20px;
   }
-  
-  /* Card text styling */
-  .card-text {
-    color: #6c757d; /* Gray color for additional text */
-    font-size: 1rem;
-    text-align: center;
-    margin-bottom: 1rem;
+
+  #welcome-container h1 {
+    font-size: 28px;
   }
-  
-  /* Responsive styling */
-  @media (max-width: 768px) {
-    .card-title {
-      font-size: 1.1rem;
-    }
-  
-    .card-text {
-      font-size: 0.9rem;
-    }
-  }
-  
-  /* Horizontal scrolling */
-  .horizontal-scroll {
-    display: flex;
-    overflow-x: auto;
-    padding: 1rem 0;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-  
-  .horizontal-scroll::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, and Opera */
-  }
-  
-  .horizontal-scroll .row {
-    display: flex;
-    flex-wrap: nowrap;
-  }
-  
-  /* Scroll indicator styling */
-  .scroll-indicator {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    text-align: center;
-    line-height: 30px;
-    border-radius: 50%;
+
+  #welcome-container p {
     font-size: 16px;
-    cursor: pointer;
   }
-  
-  .horizontal-scroll:hover .scroll-indicator {
-    display: block;
-  }
-  
-  @media (max-width: 767px) {
-    .scroll-indicator {
-      display: block;
-    }
-  }
- 
+}
