@@ -1,0 +1,53 @@
+.code-container {
+    display: flex;
+    padding: 20px;
+    gap: 20px; /* Added gap between the sections */
+  }
+  
+  .problem-details, .code-editor {
+    flex: 1;
+    background-color: #f8f9fa; /* Light background color */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .execute-button {
+    margin-top: 10px;
+    padding: 10px 15px; /* More padding */
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  .execute-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  
+  .output-section {
+    margin-top: 20px;
+  }
+  
+  .output-box {
+    background: #e9ecef;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+  }
+  
+  .error-box {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .success-modal {
+    text-align: center;
+  }
+  
+  .modal-body {
+    font-weight: bold;
+  }
+  

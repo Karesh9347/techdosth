@@ -1,0 +1,154 @@
+/* Container for the entire Query component */
+.query-container {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Query of the day section styling */
+.query-of-the-day {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.query-of-the-day h4 {
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.query-of-the-day strong {
+  font-size: 16px;
+  color: #34495e;
+}
+
+.query-of-the-day .result-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #2980b9;
+}
+
+/* SQL Query Editor section */
+.editor-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.ace_editor {
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+}
+
+.run-button {
+  margin-top: 10px;
+  background-color: #3498db;
+  border: none;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.run-button:disabled {
+  background-color: #95a5a6;
+}
+
+.run-button:hover {
+  background-color: #2980b9;
+}
+
+/* Results section */
+.results-section {
+  margin-top: 30px;
+}
+
+.results-section h5 {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #2980b9;
+}
+
+.query-status {
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+.query-status span {
+  font-weight: bold;
+}
+
+/* Table styling */
+.result-table {
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.result-table th, .result-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.result-table th {
+  background-color: #3498db;
+  color: white;
+}
+
+.result-table td {
+  background-color: #f4f6f7;
+}
+
+/* Modal styling */
+.modal-body {
+  text-align: center;
+  font-size: 18px;
+}
+
+.modal-body strong {
+  color: #27ae60;
+}
+
+.modal-title img {
+  margin-left: 10px;
+}
+
+.modal-footer button {
+  background-color: #e74c3c;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.modal-footer button:hover {
+  background-color: #c0392b;
+}
+
+/* Media query for mobile responsiveness */
+@media (max-width: 768px) {
+  .query-container {
+    padding: 10px;
+  }
+
+  .editor-title {
+    font-size: 20px;
+  }
+
+  .run-button {
+    font-size: 16px;
+  }
+
+  .results-section h5, .query-status {
+    font-size: 16px;
+  }
+}
