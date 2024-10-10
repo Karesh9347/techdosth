@@ -68,7 +68,7 @@ const Hero = () => {
                   <>
                     <div>{problemOfTheDay.QuestionName}</div>
                     <p>{formatDate(problemOfTheDay.createdAt)}</p> {/* Displaying the date */}
-                    <Link to={`/editor/${problemOfTheDay._id}`}>
+                    <Link to="/editor">
                       <button id="button">Solve</button>
                     </Link>
                     <hr />
@@ -89,7 +89,7 @@ const Hero = () => {
                   <>
                     <div>{queryOfTheDay.shortName}</div>
                     <p>{formatDate(queryOfTheDay.createdAt)}</p> {/* Displaying the date */}
-                    <Link to={`/sqlEditor/${queryOfTheDay._id}`}>
+                    <Link to="/sqlEditor">
                       <button id="button">Solve</button>
                     </Link>
                     <hr />
