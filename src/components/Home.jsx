@@ -51,8 +51,8 @@ const Home = () => {
           <Route path='/' element={<Hero/>}/>
           <Route path='/dsa' element={<Programming/>}/>
           <Route path='/sql-queries' element={<ArchivedSQL/>}/>
-          <Route path="/editor/:id" element={<Code/>}/>
-          <Route path="/sqlEditor/:id" element={<Query/>}/>
+          <Route path="/editor" element={<Code/>}/>
+          <Route path="/sqlEditor" element={<Query/>}/>
           <Route path="/questions/:id" element={<QuestionDetail/>} />
           <Route path="/contest/:id" element={<Entercontest/>} />
           <Route path="/aquestions/:id" element={<Solution/>} />
