@@ -15,7 +15,7 @@ const Query = () => {
   const [isSolved, setIsSolved] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isExecuting, setIsExecuting] = useState(false);
-  const [queryOfTheDay, setQueryOfTheDay] = useState(JSON.parse(localStorage.getItem("query")) || {});
+  const [queryOfTheDay, setQueryOfTheDay] = useState({})
 
   useEffect(() => {
     const fetchQueries = async () => {
@@ -31,9 +31,9 @@ const Query = () => {
       }
     };
 
-    if (!queryOfTheDay?.actualQuery) {
+    
       fetchQueries();
-    }
+    
   }, [queryOfTheDay]);
 
   useEffect(() => {
