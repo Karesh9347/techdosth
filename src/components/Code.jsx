@@ -10,7 +10,7 @@ import '../css/code.css';
 import axios from 'axios';
 
 const Code = () => {
-  const [pythonCode, setPythonCode] = useState(`def sum_of_even_numbers(arr):\n   # Write your code here\n\narray = [1, 2, 3, 4, 5, 6]\nresult = sum_of_even_numbers(array)\nprint(result)`);
+  const [pythonCode, setPythonCode] = useState("loading");
   const [output, setOutput] = useState("");
   const [error, setError] = useState("");
   const [aerror,setAError]=useState(null)
