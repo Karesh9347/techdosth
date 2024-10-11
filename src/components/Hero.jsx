@@ -10,6 +10,7 @@ import axios from 'axios';
 const Hero = () => {
   const [queryOfTheDay, setQueryOfTheDay] = useState(null);
   const [problemOfTheDay, setProblemOfTheDay] = useState(null);
+  const isLogin=JSON.parse(localStorage.getItem("isLogin"))
 
   useEffect(() => {
     const fetchQueries = async () => {
@@ -54,10 +55,16 @@ const Hero = () => {
           <h1>👋 Hello Coders, Welcome to TechDosth! 🚀</h1>
           <p>
             TechDosth empowers aspiring coders with coding challenges, aptitude questions, and weekly contests. Focused on Data Structures and Algorithms (DSA), it equips learners with essential skills for coding interviews. Join us to enhance your coding journey and connect with a supportive community.
-          </p>
-          <Link to="/login">
-            <button className="login-button" style={{ width: "250px" ,fontSize:"20px",fontWeight:"600px"}}>Login</button>
-          </Link>
+          </p>{!isLogin?( <Link to="/login">
+
+<button className="login-button" style={{ width: "250px" ,fontSize:"20px",fontWeight:"600px"}}>Login</button>
+</Link>):(
+  <Link to="/dsa">
+
+  <button className="login-button" style={{ width: "250px" ,fontSize:"20px",fontWeight:"600px"}}>Explore</button>
+  </Link>
+)}
+         
         </div>
         <Container>
           <Row className='g-3'>
