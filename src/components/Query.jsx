@@ -8,6 +8,7 @@ import '../css/query.css';
 import Footer from './Footer';
 import Navb from './Navb';
 
+
 const Query = () => {
   const [query, setQuery] = useState("");
   const [result, setResult] = useState(null);
@@ -17,32 +18,29 @@ const Query = () => {
   const [isExecuting, setIsExecuting] = useState(false);
   const [queryOfTheDay, setQueryOfTheDay] = useState("");
 
-  // Fetch the query of the day
   useEffect(() => {
     const fetchQueries = async () => {
       try {
-        const { data } = await axios.get('https://techdosth-backend.onrender.com/get-all-queries');
-        if (data.length > 0) {
-          const lastQuery = data[data.length - 1];
+        const response = await axios.get('https://techdosth-backend.onrender.com/get-all-queries');
+        if (response.data.length > 0) {
+          const lastQuery = response.data[response.data.length - 1];
           setQueryOfTheDay(lastQuery);
-          setQuery(lastQuery.actualQuery || "");
+          // Setting the query state to an empty string to not show the actual query
+          setQuery(""); 
         }
       } catch (error) {
         console.error('Error fetching queries:', error);
       }
     };
     fetchQueries();
-  }, [queryOfTheDay]);
+  }, []);
 
-  // Fetch the expected result for the query of the day
   useEffect(() => {
     if (queryOfTheDay?.actualQuery) {
       const fetchExpectedResult = async () => {
         try {
-          const { data } = await axios.post('https://techdosth-backend.onrender.com/execute-query', {
-            query: queryOfTheDay.actualQuery,
-          });
-          setExpectedTestCaseResult(data.result);
+          const response = await axios.post('https://techdosth-backend.onrender.com/execute-query', { query: queryOfTheDay.actualQuery });
+          setExpectedTestCaseResult(response.data.result);
         } catch (error) {
           console.error('Error fetching expected result:', error);
         }
@@ -59,16 +57,19 @@ const Query = () => {
     }
 
     try {
-      const { data } = await axios.post('https://techdosth-backend.onrender.com/execute-query', { query });
-      if (data.error) {
-        setResult([{ error: data.error }]);
+      const response = await axios.post('https://techdosth-backend.onrender.com/execute-query', { query });
+      if (response.data.error) {
+        setResult([{ error: response.data.error }]);
       } else {
-        setResult(data.result);
-        const sortedResult = [...data.result].sort();
+        setResult(response.data.result);
+        const sortedResult = [...response.data.result].sort();
         const sortedExpected = [...expectedTestCaseResult].sort();
         const solved = JSON.stringify(sortedResult) === JSON.stringify(sortedExpected);
         setIsSolved(solved);
-        if (solved) setShowModal(true);
+
+        if (solved) {
+          setShowModal(true);
+        }
       }
     } catch (err) {
       console.error('Error executing query:', err);
@@ -83,6 +84,7 @@ const Query = () => {
     if (!Array.isArray(data) || data.length === 0) {
       return <tr><td>No data available</td></tr>;
     }
+
     const columns = Object.keys(data[0]);
     return (
       <Table striped bordered hover className="result-table">
@@ -127,7 +129,7 @@ const Query = () => {
       </ol>
     );
   };
-
+  
   return (
     <>
       <Navb />
@@ -175,7 +177,7 @@ const Query = () => {
               mode="sql"
               theme="github"
               name="sql-editor"
-              value={query}
+              value={query} // This will remain empty initially
               onChange={setQuery}
               editorProps={{ $blockScrolling: true }}
               height="200px"
@@ -192,8 +194,8 @@ const Query = () => {
               {isExecuting ? "Executing..." : "Run Query"}
             </Button>
             <div className="results-section">
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <h5 className="result-title">Result:</h5>
+              <div style={{display:"flex",justifyContent:"space-between"}}>
+                <h5 className="result-title">Result:</h5> 
                 <h5 className={`query-status ${isSolved ? 'solved' : 'not-solved'}`}>
                   Query Status: <span style={{ color: isSolved ? 'green' : 'red' }}>{isSolved ? 'Solved' : 'Not Solved'}</span>
                 </h5>
@@ -204,6 +206,7 @@ const Query = () => {
             {renderTable(expectedTestCaseResult)}
           </Col>
         </Row>
+
         <Modal show={showModal} onHide={handleClose} centered>
           <Modal.Header closeButton>
             <Modal.Title>Congratulations! <img src="./success.png" alt='' width={40} height={40} /></Modal.Title>
