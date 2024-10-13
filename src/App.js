@@ -1,15 +1,13 @@
-
-import { useState } from 'react';
 import './App.css';
 import Home from './components/Home';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
- 
-
   return (
-   <div>
-<Home/>
-   </div>
+    <div>
+      <Home />
+      <Analytics />
+    </div>
   );
 }
 
