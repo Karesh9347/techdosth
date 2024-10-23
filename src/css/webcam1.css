@@ -27,7 +27,7 @@
     margin-top: 20px;
   }
   
-  @media (max-width: 768px) {
+  @media  screen (max-width: 768px) {
     h1 {
       font-size: 1.5rem;
     }
@@ -41,7 +41,7 @@
     }
   }
   
-  @media (max-width: 480px) {
+  @media screen (max-width: 480px) {
     h1 {
       font-size: 1.2rem;
     }
