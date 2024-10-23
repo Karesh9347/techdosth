@@ -1,0 +1,115 @@
+/* interview.css */
+
+/* General styling */
+.interview-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.instructions-container {
+  margin-bottom: 20px;
+}
+
+.quetions_and_video {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Question container styling */
+.question {
+  flex: 1;
+  padding: 10px;
+}
+
+.question p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.recording-complete {
+  text-align: center;
+}
+
+.recording-complete a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+/* Video container styling */
+.video-container {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.video-container video {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button styling */
+button, .btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+button:disabled, .btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .quetions_and_video {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .question {
+    order: 2;
+  }
+
+  .video {
+    order: 1;
+    margin-bottom: 20px;
+  }
+
+  .video-container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .question p {
+    font-size: 1rem;
+  }
+
+  button, .btn {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+}
+.instructions-container{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  line-height: 2rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 400;
+  font-size: larger;
+}
