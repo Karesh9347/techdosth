@@ -51,8 +51,7 @@ const ResumeAnalyser = () => {
   const handlejdChange = (event) => {
     setjdText(event.target.value);
   };
-
-  const apikey = "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";
+const apikey = "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";
 
   const analysisResume = async () => {
     const trimmedText = text.trim();
@@ -95,7 +94,7 @@ const ResumeAnalyser = () => {
             } and if you it does not feel like resume text, return zero score `
           }
         ],
-        model: "llama3-groq-8b-8192-tool-use-preview",
+        model: "gemma2-9b-it",
         temperature: 0.5,
         max_tokens: 1024,
         top_p: 0.65,
