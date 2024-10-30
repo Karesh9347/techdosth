@@ -90,7 +90,7 @@ const apikey = "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";
                   "reason": "<reason for the change>"
                 },
                 ...
-              ]#add minimum two max 5
+              ]#add minimum two max 10
             } and if you it does not feel like resume text, return zero score `
           }
         ],
