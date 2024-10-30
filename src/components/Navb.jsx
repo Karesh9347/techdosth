@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Nav, Container, Offcanvas, Dropdown } from "react-bootstrap";
-import { House, Book, Person ,Pen} from "react-bootstrap-icons";
+import { House, Book, Person, Pen } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import "../css/nav.css";
 
@@ -20,7 +20,11 @@ function Navb() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="offcanvasNavbar" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" placement="end">
+          <Navbar.Offcanvas
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+            placement="end"
+          >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id="offcanvasNavbarLabel">
                 <div className="logo-container">
@@ -35,20 +39,18 @@ function Navb() {
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 {[
                   { to: "/", icon: <House size={20} />, label: "Home" },
-                  { 
-                    label: "Practice", 
+                  {
+                    label: "Practice",
                     icon: <Pen size={20} />,
                     dropdown: true,
                   },
-                
-          
-               
-                  { 
-                    label: "Interview preparation", 
+
+                  {
+                    label: "Interview preparation",
                     icon: <Book size={20} />,
                     dropdown: true,
                   },
-                 
+
                   {
                     to: user ? "/profile" : "/login",
                     icon: <Person size={20} />,
@@ -59,43 +61,67 @@ function Navb() {
                     {navItem.dropdown ? (
                       <Dropdown>
                         <Dropdown.Toggle as={Nav.Link}>
-                          <div style={{ display: "flex", alignItems: "center" }}>
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
                             {navItem.icon}
-                            <h6 style={{ margin: "0 10px" }}>{navItem.label}</h6>
-                            
+                            <h6 style={{ margin: "0 10px" }}>
+                              {navItem.label}
+                            </h6>
                           </div>
                         </Dropdown.Toggle>
-                        <Dropdown.Menu className="custom-dropdown">
-  {navItem.label === "Interview preparation" && (
-    <>
-      <Dropdown.Item as={Link} to="/ai-interview">
-        Mock Interviews  <br/>Simulate real-time interviews with AI-driven feedback.
-      </Dropdown.Item>
-      <Dropdown.Item as={Link} to="/courses">
-        Interview MCQs with Explanation  <br/> Multiple-choice questions with detailed explanations.
-      </Dropdown.Item>
-    </>
-  )}
-  {navItem.label === "Practice" && (
-    <>
-      <Dropdown.Item as={Link} to="/dsa">
-        DSA Problems  <br/> Practice data structures and algorithms challenges.
-      </Dropdown.Item>
-      <Dropdown.Item as={Link} to="/sql-queries">
-        SQL Queries  <br/> Solve problems to improve your SQL query skills.
-      </Dropdown.Item>
-      <Dropdown.Item as={Link} to="/aptitude">
-        Aptitude Questions 
-        <br/>
-         Hone your logical, quantitative, and verbal reasoning.
-      </Dropdown.Item>
-      <Dropdown.Item as={Link} to="/contest">
-        Contests  <br/> Participate in coding contests to test your skills.
-      </Dropdown.Item>
-    </>
-  )}
-</Dropdown.Menu>
-
+                        <Dropdown.Menu className="custom-dropdown" style={{ borderRadius: "8px", padding: "10px" }}>
+        {navItem.label === "Interview preparation" && (
+            <>
+                <Dropdown.Item as={Link} to="/ai-interview" style={{ padding: "10px 15px", borderRadius: "4px" }}>
+                    <div style={{ marginBottom: "5px", fontWeight: "bold" }}>Mock Interviews</div>
+                    <span style={{ fontSize: "0.9em", color: "#555" }}>
+                        Simulate real-time interviews with AI-driven feedback.
+                    </span>
+                </Dropdown.Item>
+                <Dropdown.Item as={Link} to="/courses" style={{ padding: "10px 15px", borderRadius: "4px" }}>
+                    <div style={{ marginBottom: "5px", fontWeight: "bold" }}>Interview MCQs with Explanation</div>
+                    <span style={{ fontSize: "0.9em", color: "#555" }}>
+                        Multiple-choice questions with detailed explanations.
+                    </span>
+                </Dropdown.Item>
+                <Dropdown.Item as={Link} to="/ai-resume-analysis" style={{ padding: "10px 15px", borderRadius: "4px", whiteSpace: 'normal', overflowWrap: 'break-word', maxWidth: '400px' }}>
+                    <div style={{ marginBottom: "5px", fontWeight: "bold" }}>Analyze Resume with Job Description</div>
+                    <span style={{ fontSize: "0.9em", color: "#555" }}>
+                        Analyze your resume using your job description and experience to get your resume score.
+                    </span>
+                </Dropdown.Item>
+            </>
+        )}
+        {navItem.label === "Practice" && (
+            <>
+                <Dropdown.Item as={Link} to="/dsa" style={{ padding: "10px 15px", borderRadius: "4px" }}>
+                    <div style={{ marginBottom: "5px", fontWeight: "bold" }}>DSA Problems</div>
+                    <span style={{ fontSize: "0.9em", color: "#555" }}>
+                        Practice data structures and algorithms challenges.
+                    </span>
+                </Dropdown.Item>
+                <Dropdown.Item as={Link} to="/sql-queries" style={{ padding: "10px 15px", borderRadius: "4px" }}>
+                    <div style={{ marginBottom: "5px", fontWeight: "bold" }}>SQL Queries</div>
+                    <span style={{ fontSize: "0.9em", color: "#555" }}>
+                        Solve problems to improve your SQL query skills.
+                    </span>
+                </Dropdown.Item>
+                <Dropdown.Item as={Link} to="/aptitude" style={{ padding: "10px 15px", borderRadius: "4px" }}>
+                    <div style={{ marginBottom: "5px", fontWeight: "bold" }}>Aptitude Questions</div>
+                    <span style={{ fontSize: "0.9em", color: "#555" }}>
+                        Hone your logical, quantitative, and verbal reasoning.
+                    </span>
+                </Dropdown.Item>
+                <Dropdown.Item as={Link} to="/contest" style={{ padding: "10px 15px", borderRadius: "4px" }}>
+                    <div style={{ marginBottom: "5px", fontWeight: "bold" }}>Contests</div>
+                    <span style={{ fontSize: "0.9em", color: "#555" }}>
+                        Participate in coding contests to test your skills.
+                    </span>
+                </Dropdown.Item>
+            </>
+        )}
+    </Dropdown.Menu>
                       </Dropdown>
                     ) : (
                       <Nav.Link as={Link} to={navItem.to}>
