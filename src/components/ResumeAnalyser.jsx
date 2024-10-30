@@ -163,16 +163,17 @@ const apikey = "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";
                         name="jdText"
                         value={jdText}
                         rows="5"
+                      placeholder="enter job description or job role"
                         onChange={handlejdChange}
                         className="input-field"
                         required
                     />
-                    <label className="label">Enter Experience Directly:</label>
+                    <label className="label">Enter Experience years:</label>
                     <input
                         value={experienceInput}
                         type="number"
                         onChange={handleExperienceChange}
-                        placeholder="Directly input experience details here"
+                        placeholder=" experience in years"
                         required
                         className="input-field"
                     />
