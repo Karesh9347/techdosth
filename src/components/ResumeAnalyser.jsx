@@ -51,7 +51,7 @@ const ResumeAnalyser = () => {
   const handlejdChange = (event) => {
     setjdText(event.target.value);
   };
-const apikey = "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";
+const apikey = "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";
 
   const analysisResume = async () => {
     const trimmedText = text.trim();
