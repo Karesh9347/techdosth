@@ -35,6 +35,7 @@ import Programming from './Programming'
 import { ArchivedSQL } from './ArchivedSQL'
 import Webcam1 from './Webcam'
 import Interview from './Interview'
+import ResumeAnalyser from './ResumeAnalyser'
 
 
 
@@ -49,6 +50,7 @@ const Home = () => {
         <Routes>
           <Route path='/' element={<Hero/>}/>
           <Route path='/ai-interview' element={<Webcam1/>}/>
+          <Route path='/ai-resume-analysis' element={<ResumeAnalyser/>}/>
           <Route path='/interview' element={<Interview/>}/>
           <Route path='/dsa' element={<Programming/>}/>
           <Route path='/sql-queries' element={<ArchivedSQL/>}/>
