@@ -10,7 +10,7 @@ const Webcam1 = () => {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const apikey ="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"
+  const apikey ="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"
 const [topic,setTopic]=useState("")
   const fetchInterviewQuestions = async (topic) => {
     setLoading(true);
@@ -34,7 +34,7 @@ Now, please generate a similar array with 10 interview questions on the topic '$
 `
           }
         ],
-        model: "llama3-groq-8b-8192-tool-use-preview",
+        model: "gemma2-9b-it",
         temperature: 0.5,
         max_tokens: 1024,
         top_p: 0.65,
